@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Potions.</title>
+	<link rel="stylesheet" href="css.css" type="text/css" media="screen" />
+	<script src="data.js" type="text/javascript" charset="utf-8"></script>
+	<script src="generateContent.js" type="text/javascript" charset="utf-8"></script>
+	<script src="potions.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+	<header>
+		<h1>Potions</h1>
+		<p>Create a potion.</p>
+	</header>
+
+	<form>
+		<div id="form">
+			<h2>Potion-designer</h2>
+			<fieldset>
+				<legend>Name</legend>
+				<input name="Name" id="name">
+			</fieldset>
+			<fieldset>	
+				<legend>Description</legend>
+				<textarea name="Description" id="description"></textarea>
+			</fieldset>
+			<fieldset>
+				<legend>Effect</legend>
+				<select name="effect" id="effect">
+					<option value="Truth potion" >Truth Potion</option>
+					<option value="Strength potion" >Strength Potion</option>
+					<option value="Love potion">Love Potion</option>
+				</select>
+			</fieldset>
+			<fieldset>
+				<legend>Duration of effect</legend>
+				<span id="duration">
+					<span>
+						1h
+						<input type="range" name="time" id="time" min="1" max="24" step="1" value="1">
+						24h
+					</span>
+				</span>
+			</fieldset>
+			<fieldset id="Ingred">
+				<span id="AmountSlider">
+					<span>
+						1
+						<input type="range" name="amount" id="Alraune" min="1" max="5" step="1" value="1">
+						5
+					</span>
+				</span>
+				<span id="AmountSlider">
+					<span>
+						1
+						<input type="range" name="amount" id="Einhornhaar" min="1" max="5" step="1" value="1">
+						5
+					</span>
+				</span>
+				<span id="AmountSlider">
+					<span>
+						1
+						<input type="range" name="amount" id="Löffelkraut" min="1" max="5" step="1" value="1">
+						5
+					</span>
+				</span>
+			</fieldset>
+			<fieldset>
+				<legend>Temperature</legend>
+				<input name="Temperatur" type="number" id="temperature"> °Celcius
+		</fieldset>
+		<fieldset>
+			<legend>Stir</legend>
+			<span id="StirSlider">
+				<span>
+					occasionally
+					<input type="range" name="stir" id="stir" min="1" max="2" step="1" value="1">
+					continuously
+				</span>
+			</span>
+		</fieldset>
+			<fieldset>
+				<legend>Result</legend>
+				<input type="radio" name="Result" class="result" id="red" value="red" price="3.50" checked />
+				<label for="red">red</label>
+				<input type="radio" name="Result" class="result" id="blue" value="blue" price="4.00" />
+				<label for="blue">blue</label>
+				<input type="radio" name="Result" class="result" id="green" value="green" price="0.20" />
+				<label for="green">green</label>
+			</fieldset>
+			<button type="button" id="submit">Submit</button> 
+			</div>
+	</form>
+
+	<div>
+		<h2>Your potion</h2>
+		<div id="potion">
+			...
+		</div>
+	</div>
+
+</body>
+
+</html>
