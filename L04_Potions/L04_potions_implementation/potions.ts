@@ -40,9 +40,9 @@ namespace L04_Potions {
          console.log(time.name, ":", time.value);
          potion.innerHTML += "Duration of effect: " + time.value + "h" + "<br>"+ "<br>";
 
-         let Zutat: HTMLInputElement = <HTMLInputElement>document.querySelector("input#zutat");
-         console.log(Zutat.name, ":", Zutat.value);
-         potion.innerHTML += "Add: " + Zutat.value + "<br>";
+        //  let Zutat: HTMLInputElement = <HTMLInputElement>document.querySelector("input#zutat");
+        //  console.log(Zutat.name, ":", Zutat.value);
+        //  potion.innerHTML += "Add: " + Zutat.value + "<br>";
 
 
          let temperature: HTMLInputElement = <HTMLInputElement>document.querySelector("input#temperature");
@@ -58,7 +58,7 @@ namespace L04_Potions {
             potion.innerHTML += "Stir : continously " +  "<br>";
           }
         
-        let result: HTMLInputElement = <HTMLInputElement>document.querySelector("fieldset.result");
+        let result: HTMLInputElement = <HTMLInputElement>document.querySelector("input.result");
          console.log(result.name, ":", result.value);
          potion.innerHTML += "Result : " + result.value + "<br>";
 

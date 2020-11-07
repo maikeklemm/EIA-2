@@ -28,9 +28,9 @@ var L04_Potions;
         var time = document.querySelector("input#time");
         console.log(time.name, ":", time.value);
         potion.innerHTML += "Duration of effect: " + time.value + "h" + "<br>" + "<br>";
-        var Zutat = document.querySelector("input#zutat");
-        console.log(Zutat.name, ":", Zutat.value);
-        potion.innerHTML += "Add: " + Zutat.value + "<br>";
+        //  let Zutat: HTMLInputElement = <HTMLInputElement>document.querySelector("input#zutat");
+        //  console.log(Zutat.name, ":", Zutat.value);
+        //  potion.innerHTML += "Add: " + Zutat.value + "<br>";
         var temperature = document.querySelector("input#temperature");
         console.log(temperature.name, ":", temperature.value);
         potion.innerHTML += "Required temperature : " + temperature.value + "°C" + "<br>";
@@ -42,7 +42,7 @@ var L04_Potions;
         if (stir.value == "2") {
             potion.innerHTML += "Stir : continously " + "<br>";
         }
-        var result = document.querySelector("fieldset.result");
+        var result = document.querySelector("input.result");
         console.log(result.name, ":", result.value);
         potion.innerHTML += "Result : " + result.value + "<br>";
         var formData = new FormData(document.forms[0]);

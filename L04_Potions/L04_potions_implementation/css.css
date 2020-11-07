@@ -1,7 +1,10 @@
 body {
 	display: grid;
 	grid-template-columns: 70% auto;
-	grid-template-rows: auto auto
+	grid-template-rows: auto auto;
+	margin-left: 2em;
+	margin-right: 2em;
+	background-color: cornsilk;
 }
 
 header {
@@ -15,10 +18,11 @@ h1 {
 }
 
 div {
-	border:  thin solid black ;
-	margin: 1em;
+	border:  thin solid cornsilk;
+	margin: 0.5em;
 	background-color: brown;
 	color: cornsilk;
+	padding: 0.5em;
 }
 h2 {
 	text-align: center;
@@ -36,12 +40,12 @@ progress {
 	grid-template-columns: auto auto;
 }
 button {
+	margin: 0.5em;
 	font-size: 20px;
 	padding: 12px 12px;
 	border-radius: 8px;
 	background-color: burlywood;
-	font-size: 12px;
-  border: 2px solid rgba(0, 0, 0, 0.692);
+	font-size: 12px;;
 
   display: inline-block;
   
