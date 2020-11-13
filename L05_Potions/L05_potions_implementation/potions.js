@@ -76,57 +76,99 @@ var L04_Potions;
         var submit = document.querySelector("button#submit");
         var potion = document.querySelector("div#potion");
         potion.innerHTML = "";
-        // let total: number = 0;
-        //     let price: number = 0;
-        //     let order: HTMLDivElement = <HTMLDivElement>document.querySelector("div#order");
-        //     let formData: FormData = new FormData(form);
-        // for (let entry of formData) {
-        //     let selector: string = "[value='" + entry[1] + "']"; // "[name='" + entry[0] + "'][value='" + entry[1] + "']";
-        //     let item: HTMLInputElement = <HTMLInputElement>document.querySelector(selector);
-        //     let itemPrice: number = Number(item.getAttribute("price"));
-        //     switch (entry[0]) {
-        //       case "name":
-        //         let name: HTMLInputElement = <HTMLInputElement>document.querySelector("input#name");
-        //         console.log(name.name, ":", name.value);
-        //         potion.innerHTML += "Name of potion: " + name.value + "<br>";
-        //         case "Amount":
-        //             break;
-        //         case "Drink":
-        //             let amount: number = Number(formData.get("Amount"));
-        //             itemPrice = amount * itemPrice;
-        //             order.innerHTML += amount + " L " + item.value + ": €" + itemPrice + "<br>";
-        //             break;
-        //         default:
-        //             order.innerHTML += item.value + ": €" + itemPrice.toFixed(2) + "<br>";
-        //     }
-        //     price += itemPrice;
-        // }
-        var name = document.querySelector("input#name");
-        console.log(name.name, ":", name.value);
-        potion.innerHTML += "Name of potion: " + name.value + "<br>";
-        var desc = document.querySelector("textarea#description");
-        console.log(desc.name, ":", desc.value);
-        potion.innerHTML += "Description: " + desc.value + "<br>";
-        var effect = document.querySelector("select#effect");
-        console.log(effect.name, ":", effect.value);
-        potion.innerHTML += "Effect: " + effect.value + "<br>";
-        var time = document.querySelector("input#time");
-        console.log(time.name, ":", time.value);
-        potion.innerHTML += "Duration of effect: " + time.value + "h" + "<br>" + "<br>";
-        var Zutat = document.querySelector("fieldset#Ingred");
-        console.log(Zutat.name, ":", Zutat.value);
-        potion.innerHTML += "Add: " + Zutat.value + "<br>";
-        var temperature = document.querySelector("input#temperature");
-        console.log(temperature.name, ":", temperature.value);
-        potion.innerHTML += "Required temperature: " + temperature.value + "°C" + "<br>";
-        var stir = document.querySelector("input#stir");
-        console.log(stir.name, ":", stir.value);
-        if (stir.value == "1") {
-            potion.innerHTML += "Stir: occasionally " + "<br>";
+        var total = 0;
+        var price = 0;
+        var order = document.querySelector("div#order");
+        var formData = new FormData(form);
+        for (var _i = 0, formData_1 = formData; _i < formData_1.length; _i++) {
+            var entry = formData_1[_i];
+            var selector = "[value='" + entry[1] + "']"; // "[name='" + entry[0] + "'][value='" + entry[1] + "']";
+            var item = document.querySelector(selector);
+            var itemPrice = Number(item.getAttribute("price"));
+            switch (entry[0]) {
+                case "name":
+                    var name_1 = document.querySelector("input#name");
+                    console.log(name_1.name, ":", name_1.value);
+                    potion.innerHTML += "Name of potion: " + name_1.value + "<br>";
+                    break;
+                case "description":
+                    var desc = document.querySelector("textarea#description");
+                    console.log(desc.name, ":", desc.value);
+                    potion.innerHTML += "Description: " + desc.value + "<br>";
+                    break;
+                case "effect":
+                    var effect = document.querySelector("select#effect");
+                    console.log(effect.name, ":", effect.value);
+                    potion.innerHTML += "Effect: " + effect.value + "<br>";
+                    break;
+                case "time":
+                    var time = document.querySelector("input#time");
+                    console.log(time.name, ":", time.value);
+                    potion.innerHTML += "Duration of effect: " + time.value + "h" + "<br>" + "<br>";
+                    break;
+                case "Ingredient?":
+                    var Zutat = document.querySelector("fieldset#Ingred");
+                    console.log(Zutat.name, ":", Zutat.value);
+                    potion.innerHTML += "Add: " + Zutat.value + "<br>";
+                    break;
+                case "temperature":
+                    var temperature = document.querySelector("input#temperature");
+                    console.log(temperature.name, ":", temperature.value);
+                    potion.innerHTML += "Required temperature: " + temperature.value + "°C" + "<br>";
+                    break;
+                case "stir":
+                    var stir = document.querySelector("input#stir");
+                    console.log(stir.name, ":", stir.value);
+                    if (stir.value == "1") {
+                        potion.innerHTML += "Stir: occasionally " + "<br>";
+                    }
+                    if (stir.value == "2") {
+                        potion.innerHTML += "Stir: continously " + "<br>";
+                    }
+                    break;
+                case "result":
+                    var result = document.querySelector("input.result");
+                    console.log(result.name, ":", result.value);
+                    potion.innerHTML += "Result : " + result.value + "<br>";
+                    break;
+                // case "Amount":
+                //     break;
+                // case "Drink":
+                //     let amount: number = Number(formData.get("Amount"));
+                //     itemPrice = amount * itemPrice;
+                //     order.innerHTML += amount + " L " + item.value + ": €" + itemPrice + "<br>";
+                //     break;
+                default:
+                    order.innerHTML += item.value + ": €" + itemPrice.toFixed(2) + "<br>";
+            }
+            price += itemPrice;
         }
-        if (stir.value == "2") {
-            potion.innerHTML += "Stir: continously " + "<br>";
-        }
+        // let name: HTMLInputElement = <HTMLInputElement>document.querySelector("input#name");
+        //  console.log(name.name, ":", name.value);
+        //  potion.innerHTML += "Name of potion: " + name.value + "<br>";
+        //  let desc: HTMLInputElement = <HTMLInputElement>document.querySelector("textarea#description");
+        //  console.log(desc.name, ":", desc.value);
+        //  potion.innerHTML += "Description: " + desc.value + "<br>";
+        //  let effect: HTMLInputElement = <HTMLInputElement>document.querySelector("select#effect");
+        //  console.log(effect.name, ":", effect.value);
+        //  potion.innerHTML += "Effect: " + effect.value + "<br>";
+        //  let time: HTMLInputElement = <HTMLInputElement>document.querySelector("input#time");
+        //  console.log(time.name, ":", time.value);
+        //  potion.innerHTML += "Duration of effect: " + time.value + "h" + "<br>"+ "<br>";
+        //  let Zutat: HTMLInputElement = <HTMLInputElement>document.querySelector("fieldset#Ingred");
+        //  console.log(Zutat.name, ":", Zutat.value);
+        //  potion.innerHTML += "Add: " + Zutat.value + "<br>";
+        //  let temperature: HTMLInputElement = <HTMLInputElement>document.querySelector("input#temperature");
+        //  console.log(temperature.name, ":", temperature.value);
+        //  potion.innerHTML += "Required temperature: " + temperature.value + "°C" + "<br>";
+        //  let stir: HTMLInputElement = <HTMLInputElement>document.querySelector("input#stir");
+        //  console.log(stir.name, ":", stir.value);
+        //   if(stir.value == "1") {
+        //     potion.innerHTML += "Stir: occasionally " +  "<br>";
+        //   }
+        //   if(stir.value == "2") {
+        //     potion.innerHTML += "Stir: continously " +  "<br>";
+        //   }
         // let result: HTMLInputElement = <HTMLInputElement>document.querySelector("input.result");
         //  console.log(result.name, ":", result.value);
         //  potion.innerHTML += "Result : " + result.value + "<br>";
