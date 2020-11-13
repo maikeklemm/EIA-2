@@ -9,12 +9,12 @@ namespace L04_Potions {
  
         // let form: HTMLDivElement = <HTMLDivElement>document.querySelector("div#form");
         // form.addEventListener("change", handleChange);
-        let submit: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#submit");
-        submit.addEventListener("click", handleSubmit);
+        let ok: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#ok");
+        ok.addEventListener("click", handleOk);
     
     }
    
-    function handleSubmit(_event: Event): void {
+    function handleOk(_event: Event): void {
         console.log(_event);
 
         let submit: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#submit");

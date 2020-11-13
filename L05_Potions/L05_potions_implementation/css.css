@@ -1,0 +1,113 @@
+body {
+	display: grid;
+	grid-template-columns: 70% auto;
+	grid-template-rows: auto auto;
+	margin-left: 2em;
+	margin-right: 2em;
+	background-color:  #F2BD1D;
+	font-family: 'Courier New', Courier, monospace;
+	border-color:#400404;
+	border-style: double;
+	border-width: 0.7em;
+}
+/* alert {
+	background-image: url("snape.gif");
+	background-color: teal;
+} */
+fieldset {
+	border-style: dotted;
+	border-color: #F2BD1D ;
+	color: #F2BD1D;
+}
+
+#potion:first-line {
+	font-weight: bold;
+	font-size: larger;
+	font-style: italic;
+}
+
+#hogwarts {
+	background-image: url("hogwarts.svg");
+	background-position: center;
+  background-repeat: no-repeat;
+}
+
+#potion {
+	background: transparent;
+}
+
+header {
+	font-family: Homemade Apple;
+	grid-column: span 2;
+	text-align: center;
+}
+h1 {
+	color: #400404;
+	font-size: 28pt;
+	letter-spacing: -0.07em;
+	margin-bottom: -1.1em;
+}
+
+div {
+	/* border:  thin solid cornsilk; */
+	margin: 0.5em;
+	background-color: #59070E;
+	color: cornsilk;
+	padding: 0.5em;
+}
+h2 {
+	color: #330303;
+	text-align: center;
+	font-family: Homemade Apple;
+	margin-bottom: -0.4em;
+	margin-bottom: 0.02em;
+	
+
+
+}
+
+
+progress {
+	height:4em;
+	width: 4em;
+	transform: rotate(-90deg);
+}
+
+#slider {
+	display: grid;
+	grid-template-columns: auto auto;
+}
+button {
+	margin: 0.5em;
+	font-size: 20px;
+	padding: 12px 12px;
+	border-radius: 8px;
+	background-color:#BF9517;
+	font-size: 12px;
+	border: 0cm;
+
+  display: inline-block;
+  
+  cursor: pointer;
+  text-align: center;
+ 
+  color: #400404;
+
+  }
+  button:active {
+	background-color:#8C5D04;
+	
+	transform: translateY(1px);
+  }
+  input{
+	  background-color: #CAAD55;
+	  border: 0cm;
+  }
+  select{
+	background-color: #CAAD55;
+	border: 0cm;
+}
+textarea{
+	background-color: #CAAD55;
+	border: 0cm;
+}

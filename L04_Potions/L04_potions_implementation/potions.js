@@ -7,10 +7,10 @@ var L04_Potions;
         // gernerateContent(data);
         // let form: HTMLDivElement = <HTMLDivElement>document.querySelector("div#form");
         // form.addEventListener("change", handleChange);
-        var submit = document.querySelector("button#submit");
-        submit.addEventListener("click", handleSubmit);
+        var ok = document.querySelector("button#ok");
+        ok.addEventListener("click", handleOk);
     }
-    function handleSubmit(_event) {
+    function handleOk(_event) {
         console.log(_event);
         var submit = document.querySelector("button#submit");
         var potion = document.querySelector("div#potion");
