@@ -2,9 +2,12 @@ namespace L04_Potions {
     window.addEventListener("load", handleLoad);
     let form: HTMLFormElement;
 
-    function handleLoad(_event: Event): void {
+    async function handleLoad(_event: Event): void {
         console.log("Start");
 
+        let response: Response = await fetch("Data.json");
+        let content : string = await response.text;
+        let data: Data = JSON.parse(content);
          gernerateContent(data);
         
  

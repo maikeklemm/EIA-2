@@ -1,4 +1,14 @@
 namespace L04_Potions {
+    export interface Ingredient{
+        name: string;
+        price: number;
+    }
+ 
+    export interface Data {
+        [category: string]: Ingredient[];
+    }
+
+    
   export  function gernerateContent(_data:Data): void{
         console.log(_data);
 
