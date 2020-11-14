@@ -7,6 +7,7 @@ namespace L04_Potions {
     export interface Data {
         [category: string]: Ingredient[];
     }
+    
 
 
   export  function generateContent(_data:Data): void{
