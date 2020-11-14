@@ -4,11 +4,13 @@ namespace L04_Potions {
 
     async function handleLoad(_event: Event): void {
         console.log("Start");
-
-        let response: Response = await fetch("Data.json");
-        let content : string = await response.text;
-        let data: Data = JSON.parse(content);
-         gernerateContent(data);
+        
+        getData();
+        // let response: Response = await fetch("Data.json");
+        // let content : string = await response.text;
+        // let data: Data = JSON.parse(content);
+        //  gernerateContent(data);
+         
         
  
         form = <HTMLFormElement>document.querySelector("form");
@@ -22,6 +24,12 @@ namespace L04_Potions {
         let reset: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#reset");
         reset.addEventListener("click", resetRecipe);
 
+    }
+    async function getData(): Promise<void> {
+      let response: Response = await fetch("Data.json");
+      let offer: string = await response.text();
+      let data: Data = JSON.parse(offer);
+      generateContent(data);
     }
     async function sendPotion(_event: Event): Promise<void> {
       console.log("Send potion");
