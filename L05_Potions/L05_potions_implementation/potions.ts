@@ -16,6 +16,8 @@ namespace L04_Potions {
         let submit: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#submit");
         submit.addEventListener("click", sendPotion);
 
+        let reset: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#reset");
+        reset.addEventListener("click", resetRecipe);
 
     }
     async function sendPotion(_event: Event): Promise<void> {
@@ -25,7 +27,10 @@ namespace L04_Potions {
       await fetch("index.html?" + query.toString());
       alert("Potion sent!");
   }
-   
+   function resetRecipe(){
+    let potion: HTMLDivElement = <HTMLDivElement>document.querySelector("div#potion");
+    potion.innerHTML = "";
+   }
       function displayPotion(): void {
       console.log("displayPotion");
      // let submit: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#submit");

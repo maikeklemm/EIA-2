@@ -11,6 +11,8 @@ var L04_Potions;
         ok.addEventListener("click", displayPotion);
         let submit = document.querySelector("button#submit");
         submit.addEventListener("click", sendPotion);
+        let reset = document.querySelector("button#reset");
+        reset.addEventListener("click", resetRecipe);
     }
     async function sendPotion(_event) {
         console.log("Send potion");
@@ -18,6 +20,10 @@ var L04_Potions;
         let query = new URLSearchParams(formData);
         await fetch("index.html?" + query.toString());
         alert("Potion sent!");
+    }
+    function resetRecipe() {
+        let potion = document.querySelector("div#potion");
+        potion.innerHTML = "";
     }
     function displayPotion() {
         console.log("displayPotion");
