@@ -5,11 +5,11 @@ var L04_Potions;
     let form;
     async function handleLoad(_event) {
         console.log("Start");
-        getData();
-        // let response: Response = await fetch("Data.json");
-        // let content : string = await response.text;
-        // let data: Data = JSON.parse(content);
-        //  gernerateContent(data);
+        // getData();
+        let response = await fetch("Data.json");
+        let content = await response.text;
+        let data = JSON.parse(content);
+        L04_Potions.gernerateContent(data);
         form = document.querySelector("form");
         let ok = document.querySelector("button#ok");
         ok.addEventListener("click", displayPotion);

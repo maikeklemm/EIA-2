@@ -5,11 +5,11 @@ namespace L04_Potions {
   async function handleLoad(_event: Event): Promise<void> {
     console.log("Start");
 
-    getData();
-    // let response: Response = await fetch("Data.json");
-    // let content : string = await response.text;
-    // let data: Data = JSON.parse(content);
-    //  gernerateContent(data);
+    // getData();
+    let response: Response = await fetch("Data.json");
+    let content : string = await response.text;
+    let data: Data = JSON.parse(content);
+     gernerateContent(data);
 
 
 
