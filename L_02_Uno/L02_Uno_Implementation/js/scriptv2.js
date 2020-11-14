@@ -1,3 +1,4 @@
+"use strict";
 //variablen
 let gelb1 = {
     Zahl: 1,
