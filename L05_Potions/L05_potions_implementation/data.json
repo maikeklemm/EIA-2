@@ -1,12 +1,16 @@
 {
-        "Zutaten": [
-            {"name": "Wolfsbane", "price": 5},
-            {"name": "Unicorn hair", "price": 20 },
-            {"name": "Mistletoe berries", "price": 1 }
-        ]
-        
-   
-
-
-    
+    "Zutaten": [
+        {
+            "name": "Wolfsbane",
+            "price": 5
+        },
+        {
+            "name": "Unicorn hair",
+            "price": 20
+        },
+        {
+            "name": "Mistletoe berries",
+            "price": 1
+        }
+    ]
 }
