@@ -1,7 +1,7 @@
 "use strict";
 var L04_Potions;
 (function (L04_Potions) {
-    function gernerateContent(_data) {
+    function generateContent(_data) {
         console.log(_data);
         for (let category in _data) {
             console.log(category);
@@ -24,7 +24,7 @@ var L04_Potions;
                 fieldset.appendChild(group);
         }
     }
-    L04_Potions.gernerateContent = gernerateContent;
+    L04_Potions.generateContent = generateContent;
     function createIngredient(_items, _category) {
         let group = document.createElement("div");
         group.id = "zutat";

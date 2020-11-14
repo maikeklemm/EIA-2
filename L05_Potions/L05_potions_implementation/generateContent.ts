@@ -8,8 +8,8 @@ namespace L04_Potions {
         [category: string]: Ingredient[];
     }
 
-    
-  export  function gernerateContent(_data:Data): void{
+
+  export  function generateContent(_data:Data): void{
         console.log(_data);
 
         for (let category in _data) {

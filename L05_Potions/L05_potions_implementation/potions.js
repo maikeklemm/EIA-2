@@ -22,7 +22,7 @@ var L04_Potions;
         let response = await fetch("Data.json");
         let offer = await response.text();
         let data = JSON.parse(offer);
-        generateContent(data);
+        L04_Potions.generateContent(data);
     }
     async function sendPotion(_event) {
         console.log("Send potion");
