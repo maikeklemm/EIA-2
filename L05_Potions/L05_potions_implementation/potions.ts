@@ -2,7 +2,7 @@ namespace L04_Potions {
     window.addEventListener("load", handleLoad);
     let form: HTMLFormElement;
 
-    async function handleLoad(_event: Event): void {
+    async function handleLoad(_event: Event): Promise<void> {
         console.log("Start");
         
         getData();
