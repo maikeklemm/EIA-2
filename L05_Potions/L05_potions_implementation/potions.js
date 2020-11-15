@@ -3,7 +3,7 @@ var L04_Potions;
 (function (L04_Potions) {
     window.addEventListener("load", handleLoad);
     let form;
-    async function handleLoad(_event) {
+    function handleLoad(_event) {
         console.log("Start");
         getData();
         // let response: Response = await fetch("data.json");
