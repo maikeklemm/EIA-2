@@ -5,11 +5,11 @@ var L04_Potions;
     let form;
     async function handleLoad(_event) {
         console.log("Start");
-        // getData();
-        let response = await fetch("data.json");
-        let content = await response.text;
-        let data = JSON.parse(content);
-        L04_Potions.gernerateContent(data);
+        getData();
+        // let response: Response = await fetch("data.json");
+        // let content : string = await response.text;
+        // let data: Data = JSON.parse(content);
+        //  gernerateContent(data);
         form = document.querySelector("form");
         let ok = document.querySelector("button#ok");
         ok.addEventListener("click", displayPotion);
@@ -19,7 +19,7 @@ var L04_Potions;
         reset.addEventListener("click", resetRecipe);
     }
     async function getData() {
-        let response = await fetch("Data.json");
+        let response = await fetch("data.json");
         let offer = await response.text();
         let data = JSON.parse(offer);
         L04_Potions.generateContent(data);
