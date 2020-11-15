@@ -6,7 +6,7 @@ var L04_Potions;
     async function handleLoad(_event) {
         console.log("Start");
         // getData();
-        let response = await fetch("Data.json");
+        let response = await fetch("data.json");
         let content = await response.text;
         let data = JSON.parse(content);
         L04_Potions.gernerateContent(data);

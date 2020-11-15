@@ -6,7 +6,7 @@ namespace L04_Potions {
     console.log("Start");
 
     // getData();
-    let response: Response = await fetch("Data.json");
+    let response: Response = await fetch("data.json");
     let content : string = await response.text;
     let data: Data = JSON.parse(content);
      gernerateContent(data);
