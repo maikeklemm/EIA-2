@@ -1,0 +1,24 @@
+{
+  "name": "einmalig",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "serve": "^11.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node L05_Potions/L05_potions_implementation/potions.js"
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maikeklemm/EIA-2.git"
+  },
+  "author": "maike",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maikeklemm/EIA-2/issues"
+  },
+  "homepage": "https://github.com/maikeklemm/EIA-2#readme"
+}
