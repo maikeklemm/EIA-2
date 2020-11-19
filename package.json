@@ -8,7 +8,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node L06_Potions/L06_potions_implementation/Server/Server.js"
+    "start": "node L06_Potions/L06_potions_implementation/Client/index.html"
     
   },
   "repository": {
