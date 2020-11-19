@@ -3,13 +3,11 @@ var L04_Potions;
 (function (L04_Potions) {
     window.addEventListener("load", handleLoad);
     let form;
+    // let url: string = "index.html";
+    let url = "http:://localhost:5001";
     function handleLoad(_event) {
         console.log("Start");
         getData();
-        // let response: Response = await fetch("data.json");
-        // let content : string = await response.text;
-        // let data: Data = JSON.parse(content);
-        //  gernerateContent(data);
         form = document.querySelector("form");
         let ok = document.querySelector("button#ok");
         ok.addEventListener("click", displayPotion);
@@ -28,8 +26,9 @@ var L04_Potions;
         console.log("Send potion");
         let formData = new FormData(document.forms[0]);
         let query = new URLSearchParams(formData);
-        await fetch("index.html?" + query.toString());
-        alert("Potion sent!");
+        let response = await fetch(url + "?" + query.toString());
+        let responseText = await response.text();
+        alert(responseText);
     }
     function resetRecipe() {
         let potion = document.querySelector("div#potion");
