@@ -25,8 +25,8 @@ var L04_Potions;
     }
     async function sendPotion(_event) {
         console.log("Send potion");
-        let url = "http://localhost:5001/";
-        // let url: string = "huroku gedöns"; 
+        // let url: string = "http://localhost:5001/"; 
+        let url = "http://einzigartig.herokuapp.com/";
         let formData = new FormData(document.forms[0]);
         let query = new URLSearchParams(formData);
         console.log("query:" + query);
