@@ -35,7 +35,7 @@ namespace L04_Potions {
   async function sendPotion(_event: Event): Promise<void> {
     console.log("Send potion");
     // let url: string = "http://localhost:5001/"; 
-    let url: string = "http://einzigartig.herokuapp.com/"; 
+    let url: string = "https://einzigartig.herokuapp.com/"; 
     
             let formData: FormData = new FormData(document.forms[0]);
             let query: URLSearchParams = new URLSearchParams(<any>formData);
