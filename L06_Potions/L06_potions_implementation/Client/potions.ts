@@ -2,7 +2,8 @@ namespace L04_Potions {
   window.addEventListener("load", handleLoad);
   let form: HTMLFormElement;
   // let url: string = "index.html";
-  let url: string = "http:://localhost:5001";
+  // let url: string = "http:://localhost:5001";
+  // url wird in sendPotion deklariert (client.ts)
 
 
   function handleLoad(_event: Event) {
@@ -27,17 +28,31 @@ namespace L04_Potions {
   }
   async function getData(): Promise<void> {
     let response: Response = await fetch("data.json");
-    let offer: string = await response.text();
-    let data: Data = JSON.parse(offer);
+    let content: string = await response.text();
+    let data: Data = JSON.parse(content);
     generateContent(data);
   }
   async function sendPotion(_event: Event): Promise<void> {
     console.log("Send potion");
-    let formData: FormData = new FormData(document.forms[0]);
-    let query: URLSearchParams = new URLSearchParams(<any>formData);
-    let response : Response = await fetch(url + "?" + query.toString());
-    let responseText : string = await response.text();
-    alert(responseText);
+    let url: string = "http://localhost:5001/"; 
+            // let url: string = "huroku gedöns"; 
+    
+            let formData: FormData = new FormData(document.forms[0]);
+            let query: URLSearchParams = new URLSearchParams(<any>formData);
+    
+            console.log("query:" + query);
+    
+            url = url + "?" + query.toString();
+    
+            console.log (url);
+    
+            let response : Response = await fetch(url);
+    
+            console.log(response);
+    
+            let responseText : string = await response.text();
+            alert(responseText);
+          
   }
   function resetRecipe() {
     let potion: HTMLDivElement = <HTMLDivElement>document.querySelector("div#potion");

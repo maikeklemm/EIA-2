@@ -4,7 +4,8 @@ var L04_Potions;
     window.addEventListener("load", handleLoad);
     let form;
     // let url: string = "index.html";
-    let url = "http:://localhost:5001";
+    // let url: string = "http:://localhost:5001";
+    // url wird in sendPotion deklariert (client.ts)
     function handleLoad(_event) {
         console.log("Start");
         getData();
@@ -18,15 +19,21 @@ var L04_Potions;
     }
     async function getData() {
         let response = await fetch("data.json");
-        let offer = await response.text();
-        let data = JSON.parse(offer);
+        let content = await response.text();
+        let data = JSON.parse(content);
         L04_Potions.generateContent(data);
     }
     async function sendPotion(_event) {
         console.log("Send potion");
+        let url = "http://localhost:5001/";
+        // let url: string = "huroku gedöns"; 
         let formData = new FormData(document.forms[0]);
         let query = new URLSearchParams(formData);
-        let response = await fetch(url + "?" + query.toString());
+        console.log("query:" + query);
+        url = url + "?" + query.toString();
+        console.log(url);
+        let response = await fetch(url);
+        console.log(response);
         let responseText = await response.text();
         alert(responseText);
     }
