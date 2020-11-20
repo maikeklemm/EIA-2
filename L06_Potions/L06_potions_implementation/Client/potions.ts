@@ -111,22 +111,22 @@ namespace L04_Potions {
 
         case "Temperatur":
           console.log(entry[0], ":", entry[1]);
-          potion.innerHTML += "<br>" + "Required temperature: " + entry[1] + "°C" + "<br>";
+          potion.innerHTML += "<br>" + "Heat up / Cool down until the temperature amounts to  " + entry[1] + "°C" + "." + "<br>";
           break;
 
         case "stir":
           let stir: HTMLInputElement = <HTMLInputElement>document.querySelector("input#stir");
           console.log(stir.name, ":", stir.value);
           if (stir.value == "1") {
-            potion.innerHTML += "Stir: occasionally " + "<br>";
+            potion.innerHTML += "Stir occasionally to get a thick consistency." + "<br>";
           }
           if (stir.value == "2") {
-            potion.innerHTML += "Stir: continously " + "<br>";
+            potion.innerHTML += "Stir continously to get a smooth consistency. " + "<br>";
           }
           break;
         case "Result":
           console.log(entry[0], ":", entry[1]);
-          potion.innerHTML += "Result: " + entry[1] + "<br>";
+          potion.innerHTML += "The Potion should now be " + entry[1] + "." + "<br>";
           break;
 
         default:
