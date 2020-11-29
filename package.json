@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@types/mongodb": "^3.5.34",
+    "mongodb": "^3.6.3",
     "serve": "^11.3.2"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node L06_Potions/L06_potions_implementation/Server/Server.js"
-    
+    "start": "node L07_Potions/L06_potions_implementation/Server/Server.js"
   },
   "repository": {
     "type": "git",
