@@ -3,8 +3,8 @@ var L07_Potions;
 (function (L07_Potions) {
     window.addEventListener("load", handleLoad);
     let form;
-    let url = "http://localhost:5001/";
-    // let url: string = "https://einzigartig.herokuapp.com/"; 
+    // let url: string = "http://localhost:5001/"; 
+    let url = "https://einzigartig.herokuapp.com/";
     function handleLoad(_event) {
         console.log("Start");
         getData();
