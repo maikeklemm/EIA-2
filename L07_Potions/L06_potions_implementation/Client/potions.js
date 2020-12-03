@@ -25,8 +25,9 @@ var L07_Potions;
         L07_Potions.generateContent(data);
     }
     async function showSubmittedRecipes() {
-        let respone = await fetch(url + "?" + "command=retrieve");
-        let responseText = await respone.text();
+        let response = await fetch(url + "?" + "command=retrieve");
+        let responseText = await response.text();
+        console.log(responseText);
         alert(responseText.replace(/<br>/g, " "));
     }
     async function sendPotion(_event) {

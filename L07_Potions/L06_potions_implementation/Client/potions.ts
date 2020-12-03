@@ -37,8 +37,9 @@ namespace L07_Potions {
   }
 
   async function showSubmittedRecipes(): Promise<void> {
-    let respone: Response = await fetch(url + "?" + "command=retrieve");
-    let responseText: string = await respone.text();
+    let response: Response = await fetch(url + "?" + "command=retrieve");
+    let responseText: string = await response.text();
+    console.log(responseText);
     alert(responseText.replace(/<br>/g, " "));
   }
 
