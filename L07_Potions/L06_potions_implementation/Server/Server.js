@@ -36,6 +36,27 @@ var L07_Potions;
         _response.write("This is your recipe:   ");
         if (_request.url) {
             let url = Url.parse(_request.url, true);
+            let command = url.query["command"];
+            if (command == "retrieve") {
+                handleRetrieveRecipes(_request, _response);
+            }
+            else {
+                showSubmittedRecipe(_request, _response);
+            }
+        }
+        async function handleRetrieveRecipes(_request, _response) {
+            console.log("retrieve Recipes");
+            let allRecipes = recipes.find();
+            let allRecipesString = await allRecipes.toArray();
+            for (let recipe of allRecipesString) {
+                for (let key in Object(recipe)) {
+                    _response.write(key + ": " + Object(recipe)[key] + "\n");
+                }
+                _response.write("\n");
+            }
+            _response.end();
+        }
+        async function showSubmittedRecipe(params) {
             let jsonString = JSON.stringify(url.query);
             _response.write(jsonString);
             storeRecipe(url.query);

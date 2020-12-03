@@ -3,9 +3,8 @@ var L07_Potions;
 (function (L07_Potions) {
     window.addEventListener("load", handleLoad);
     let form;
-    // let url: string = "index.html";
-    // let url: string = "http:://localhost:5001";
-    // url wird in sendPotion deklariert 
+    let url = "http://localhost:5001/";
+    // let url: string = "https://einzigartig.herokuapp.com/"; 
     function handleLoad(_event) {
         console.log("Start");
         getData();
@@ -16,6 +15,8 @@ var L07_Potions;
         submit.addEventListener("click", sendPotion);
         let reset = document.querySelector("button#reset");
         reset.addEventListener("click", resetRecipe);
+        let output = document.querySelector("button#output");
+        output.addEventListener("click", showSubmittedRecipes);
     }
     async function getData() {
         let response = await fetch("data.json");
@@ -23,10 +24,15 @@ var L07_Potions;
         let data = JSON.parse(content);
         L07_Potions.generateContent(data);
     }
+    async function showSubmittedRecipes() {
+        let respone = await fetch(url + "?" + "command=retrieve");
+        let responseText = await respone.text();
+        alert(responseText.replace(/<br>/g, " "));
+    }
     async function sendPotion(_event) {
         console.log("Send potion");
-        let url = "http://localhost:5001/";
-        // let url: string = "https://einzigartig.herokuapp.com/"; 
+        // let url: string = "http://localhost:5001/"; 
+        // // let url: string = "https://einzigartig.herokuapp.com/"; //-> wird jetzt oben deklariert
         let formData = new FormData(document.forms[0]);
         let query = new URLSearchParams(formData);
         console.log("query:" + query);
@@ -46,9 +52,9 @@ var L07_Potions;
         // let submit: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#submit");
         let potion = document.querySelector("div#potion");
         potion.innerHTML = "";
-        let total = 0;
-        let price = 0;
-        let order = document.querySelector("div#order");
+        // let total: number = 0;
+        // let price: number = 0;
+        // let order: HTMLDivElement = <HTMLDivElement>document.querySelector("div#order");
         let formData = new FormData(document.forms[0]);
         // let formData: FormData = new FormData(form);
         for (let entry of formData) {
@@ -78,9 +84,9 @@ var L07_Potions;
                 case "Zutaten":
                     let itemPrice = Number(item.getAttribute("price"));
                     potion.innerHTML += "Ingredients: " + entry[1] + "(" + itemPrice + " Galleone/n)" + "<br>";
-                    let Amount = Number(item.getAttribute(""));
-                    let total = itemPrice;
-                    console.log(total);
+                    // let Amount: number = Number(item.getAttribute(""))
+                    // let total: number = itemPrice;
+                    // console.log(total)
                     break;
                 case "Temperatur":
                     console.log(entry[0], ":", entry[1]);

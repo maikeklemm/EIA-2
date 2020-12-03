@@ -50,8 +50,33 @@ export namespace L07_Potions {
 
         if (_request.url) {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
+            
+            let command: string | string[] | undefined = url.query["command"];
+            
+            if (command == "retrieve") {
+                handleRetrieveRecipes(_request, _response);
+            } else {
+                showSubmittedRecipe(_request, _response);
+            }
+        }
+
+        async function handleRetrieveRecipes(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
+            console.log("retrieve Recipes");
+            let allRecipes: Mongo.Cursor = recipes.find();
+            let allRecipesString: string[] = await allRecipes.toArray();
+    
+            for (let recipe of allRecipesString) {
+                for (let key in Object(recipe)) {
+                    _response.write(key + ": " + Object(recipe)[key] + "\n");
+                }
+                _response.write("\n");
+            }
+            _response.end();
+        }
 
 
+        async function showSubmittedRecipe(params:type) {
+            
             let jsonString: string = JSON.stringify(url.query);
             _response.write(jsonString);
 

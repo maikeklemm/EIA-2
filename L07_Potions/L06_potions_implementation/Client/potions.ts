@@ -1,9 +1,9 @@
 namespace L07_Potions {
   window.addEventListener("load", handleLoad);
   let form: HTMLFormElement;
-  // let url: string = "index.html";
-  // let url: string = "http:://localhost:5001";
-  // url wird in sendPotion deklariert 
+
+  let url: string = "http://localhost:5001/"; 
+  // let url: string = "https://einzigartig.herokuapp.com/"; 
 
 
   function handleLoad(_event: Event) {
@@ -25,6 +25,9 @@ namespace L07_Potions {
     let reset: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#reset");
     reset.addEventListener("click", resetRecipe);
 
+    let output: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#output");
+    output.addEventListener("click", showSubmittedRecipes);
+
   }
   async function getData(): Promise<void> {
     let response: Response = await fetch("data.json");
@@ -32,10 +35,18 @@ namespace L07_Potions {
     let data: Data = JSON.parse(content);
     generateContent(data);
   }
+
+  async function showSubmittedRecipes(): Promise<void> {
+    let respone: Response = await fetch(url + "?" + "command=retrieve");
+    let responseText: string = await respone.text();
+    alert(responseText.replace(/<br>/g, " "));
+  }
+
+
   async function sendPotion(_event: Event): Promise<void> {
     console.log("Send potion");
-    let url: string = "http://localhost:5001/"; 
-    // let url: string = "https://einzigartig.herokuapp.com/"; 
+    // let url: string = "http://localhost:5001/"; 
+    // // let url: string = "https://einzigartig.herokuapp.com/"; //-> wird jetzt oben deklariert
     
             let formData: FormData = new FormData(document.forms[0]);
             let query: URLSearchParams = new URLSearchParams(<any>formData);
@@ -64,9 +75,9 @@ namespace L07_Potions {
     let potion: HTMLDivElement = <HTMLDivElement>document.querySelector("div#potion");
     potion.innerHTML = "";
 
-    let total: number = 0;
-    let price: number = 0;
-    let order: HTMLDivElement = <HTMLDivElement>document.querySelector("div#order");
+    // let total: number = 0;
+    // let price: number = 0;
+    // let order: HTMLDivElement = <HTMLDivElement>document.querySelector("div#order");
 
     let formData: FormData = new FormData(document.forms[0]);
     // let formData: FormData = new FormData(form);
@@ -103,9 +114,9 @@ namespace L07_Potions {
           let itemPrice: number = Number(item.getAttribute("price"));
           potion.innerHTML += "Ingredients: " + entry[1] + "(" + itemPrice + " Galleone/n)" + "<br>";
 
-          let Amount: number = Number(item.getAttribute(""))
-          let total: number = itemPrice;
-          console.log(total)
+          // let Amount: number = Number(item.getAttribute(""))
+          // let total: number = itemPrice;
+          // console.log(total)
 
           break;
 
