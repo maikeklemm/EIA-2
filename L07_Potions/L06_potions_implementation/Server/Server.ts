@@ -60,7 +60,7 @@ export namespace L07_Potions {
                 _response.write("Here are the most recently submitted recipes. To see all open the console.                         ");
                 _response.write(allRecipesString);
             } else {
-                _response.write("This is your recipe:  (Um alle Rezepte anzeigen zu lassen, bitte die Seite nochmal neu laden.)                ");
+                _response.write("This is your recipe:  (Um alle Rezepte anzeigen zu lassen, bitte die Seite zuerst nochmal neu laden.)                ");
                 let jsonString: string = JSON.stringify(url.query);
                 _response.write(jsonString);
     
