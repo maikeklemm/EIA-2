@@ -43,9 +43,11 @@ var L07_Potions;
                 console.log(allRecipes);
                 let allRecipesString = JSON.stringify(await allRecipes.toArray());
                 console.log(allRecipesString);
+                _response.write("Here are the most recently submitted recipes. To see all open the console.   ");
                 _response.write(allRecipesString);
             }
             else {
+                _response.write("This is your recipe:   ");
                 let jsonString = JSON.stringify(url.query);
                 _response.write(jsonString);
                 console.log("schicke rezept");
