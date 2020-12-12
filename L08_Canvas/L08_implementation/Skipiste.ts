@@ -26,71 +26,13 @@ namespace L08_Skipiste {
         drawCloud({ x: 740, y: 175 }, { x: 250, y: 75 });
         drawMountains(posMountains, 75, 200, "#CCCCCC", "#FFFFFF");
         drawPiste();
-        // drawTrees(8, posTreesStart, posTreesEnd, 0.1, 0.37, 1.4);
-        // // posTreesStart.x = posStreet.x + streetWidthBack / 2 + treesOffsetBack;
-        // // posTreesEnd.x = posTreesEnd.x + streetWidthFront + 2 * treesOffsetFront;
-        // drawTrees(8, posTreesStart, posTreesEnd, 0.1, 0.37, 1.4);
-        // drawLift({ x: 900, y: 75 });
-        // drawHouse();
-        drawSkier({ x: 0, y: 0 });
-        drawSnow({ x: 0, y: 0 });
+        drawLift({ x: 1080, y: 100 });
+        drawLift({ x: 700, y: 74 });
+        drawHouse({x:0, y:300});
+        drawSkier({ x: 10, y: 300 });
+        drawSnow();
+        
 
-    }
-
-    function drawTrees(_nTrees: number, _posStart: Vector, _posEnd: Vector, _minScale: number, _stepPos: number, _stepScale: number): void {
-        console.log("Trees", _posStart, _posEnd);
-        let transform: DOMMatrix = crc2.getTransform();
-        let step: Vector = {
-            x: (_posEnd.x - _posStart.x) * _stepPos,
-            y: (_posEnd.y - _posStart.y) * _stepPos
-        };
-
-        crc2.translate(_posStart.x, _posStart.y);
-        crc2.scale(_minScale, _minScale);
-
-        do {
-            drawTree();
-
-            crc2.translate(step.x, step.y);
-            crc2.scale(_stepScale, _stepScale);
-
-        } while (--_nTrees > 0);
-
-        crc2.setTransform(transform);
-    }
-
-    function drawTree(): void {
-        console.log("Tree");
-        let nBranches: number = 50;
-        let maxRadius: number = 60;
-        let branch: Path2D = new Path2D();
-        branch.arc(0, 0, maxRadius, 0, 2 * Math.PI);
-
-        crc2.fillStyle = "brown";
-        crc2.fillRect(0, 0, 20, -200);
-
-        crc2.save();
-        crc2.translate(0, -120);
-
-        do {
-            let y: number = Math.random() * 350;
-            let size: number = 1 - y / 700;
-            let x: number = (Math.random() - 0.5) * 2 * maxRadius;
-
-            crc2.save();
-            crc2.translate(0, -y);
-            crc2.scale(size, size);
-            crc2.translate(x, 0);
-
-            let colorAngle: number = 120 - Math.random() * 60;
-            let color: string = "HSLA(" + colorAngle + ", 50%, 30%, 0.5)";
-
-            crc2.fillStyle = color;
-            crc2.fill(branch);
-
-            crc2.restore();
-        } while (--nBranches > 0);
-        crc2.restore();
     }
 
     function drawBackground(): void {
@@ -133,8 +75,8 @@ namespace L08_Skipiste {
         let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
 
         particle.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
-        gradient.addColorStop(0, "HSLA(0, 100%, 100%, 0.5)");
-        gradient.addColorStop(1, "HSLA(0, 100%, 100%, 0)");
+        gradient.addColorStop(0, "HSLA(203, 20%, 97%, 0.5)");
+        gradient.addColorStop(1, "HSLA(203, 20%, 97%, 0)");
 
         crc2.save();
         crc2.translate(_position.x, _position.y);
@@ -160,8 +102,8 @@ namespace L08_Skipiste {
         crc2.lineTo(0, 720);
         crc2.closePath();
 
-        let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
-        gradient.addColorStop(0, "#E6F5FF");
+        let gradient: CanvasGradient = crc2.createLinearGradient(0, 100, 0, 920);
+        gradient.addColorStop(0, "#CFDDE6");
         gradient.addColorStop(0.9, "white");
 
         crc2.fillStyle = gradient;
@@ -191,7 +133,7 @@ namespace L08_Skipiste {
         crc2.lineTo(x, 400);
         crc2.closePath();
 
-        let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, -_max);
+        let gradient: CanvasGradient = crc2.createLinearGradient(0, 50, 0, -_max);
         gradient.addColorStop(0, _colorLow);
         gradient.addColorStop(0.7, _colorHigh);
 
@@ -208,12 +150,13 @@ namespace L08_Skipiste {
 
         for (let i: number = 0; i < 6; i++) {
 
-            _position.x = + Math.random() * 1000;
-            _position.y = + Math.random() * (720 - 400) + 400;
+            _position.x += Math.random() * (280 - 1) + 1;
+            _position.y += Math.random() * (100 - 1) + 1;
 
 
 
-            let SIZE = Math.random() * (0.4 - 0.3) + 0.3;
+
+            let SIZE = Math.random() * (0.5 - 0.3) + 0.3;
             let randomColor: string = SkierColors[Math.floor(Math.random() * SkierColors.length)]
 
             crc2.save();
@@ -247,62 +190,88 @@ namespace L08_Skipiste {
 
             crc2.restore();
         }
-       crc2.restore();
+
     }
 
-    function drawSnow(_position: Vector) {
+    function drawSnow() {
         console.log("drawing Snow");
 
-        // let SkierColors: string[] = ["#830DA6", "#38F2AA", "#F2B31F", "#0033A6", "#4513F2", "#F21371", "#38F240"];
+        let gradient: CanvasGradient = crc2.createRadialGradient(0,-3,3,5,0,20)
+        gradient.addColorStop(0, "white");
+        gradient.addColorStop(1, "grey");
 
-        for (let i: number = 0; i < 60; i++) {
+        for (let i: number = 0; i < 80; i++) {
 
-            _position.x = + Math.random() * (1080 - 0) + 0;;
-            _position.y = + Math.random() * (720 - 0) + 0;
+            let x = + Math.random() * (1080 - 0) + 0;;
+            let y = + Math.random() * (720 - 0) + 0;
 
-
-
-            let SIZE = Math.random() * (0.4 - 0.3) + 0.3;
-            // let randomColor: string = SkierColors[Math.floor(Math.random() * SkierColors.length)]
+            let SIZE = Math.random() * (0.6 - 0.3) + 0.3;
 
             crc2.save();
-            crc2.translate(_position.x, _position.y);
-            // crc2.rotate(Math.PI / 10);
+            crc2.translate(x, y);
             crc2.scale(SIZE, SIZE);
 
             crc2.beginPath();
-           
+            crc2.arc(0, 0, 10, 0, 2 * Math.PI);
 
-            crc2.arc(0, 0, 10, 0, 2 * Math.PI);  
-
-            
-            crc2.fillStyle = "black";
+            crc2.fillStyle = gradient;
             crc2.fill();
 
             crc2.restore();
         }
-       crc2.restore();
+
+    }
+    function drawHouse(_position:Vector){
+        console.log("drawing House")
+
+        crc2.save();
+        crc2.translate(_position.x, _position.y);
+        crc2.scale(0.8,0.8);
+
+        crc2.beginPath();
+        crc2.moveTo(0,0);
+        crc2.lineTo(100,0);
+        crc2.lineTo(100,-200);
+        crc2.lineTo(0,-300);
+        crc2.closePath;
+
+        crc2.fillStyle="#830DA6";
+        crc2.fill();
+
+        crc2.restore();
+        crc2.save();
+        crc2.translate(1080, 100);
+
+        crc2.beginPath();
+        crc2.moveTo(0,0);
+        crc2.lineTo(-1080,-75);
+        
+        crc2.lineWidth= 8;
+        crc2.strokeStyle="#F2B31F";
+        crc2.stroke();
+
+        crc2.restore();
+        
+    }
+    function drawLift(_position:Vector){
+
+        console.log("drawing Lift")
+
+        crc2.save();
+        crc2.translate(_position.x, _position.y);
+
+       
+        
+    
+        crc2.fillStyle = "#830DA6";
+        
+       crc2.fillRect(-400,-24,110,110);
+      
+
+        crc2.restore();
+
+
     }
 
-// function drawSnow() :void{
-
-//     for (let i: number = 0; i < 100; i++) {
-
-//         let x =+ Math.random() * (1080 - 0) + 0;
-//         let y =+ Math.random() * (720 - 0) + 0;
-
-//         crc2.save();
-//         crc2.translate(x, y);
-
-       
-//         crc2.arc(0, 0, 3, 0, 2 * Math.PI);
-       
-
-//         crc2.fillStyle = "black";
-//         crc2.fill();
-
-//         crc2.restore();
-
-//     }
-// }
+    
 }
