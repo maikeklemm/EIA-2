@@ -97,5 +97,30 @@ var L09_Skipiste;
         L09_Skipiste.crc2.restore();
     }
     L09_Skipiste.drawLift = drawLift;
+    function drawMountains(_position, _min, _max, _colorLow, _colorHigh) {
+        console.log("Mountains", _position, _min, _max);
+        let stepMin = 50;
+        let stepMax = 150;
+        let x = 0;
+        L09_Skipiste.crc2.save();
+        L09_Skipiste.crc2.translate(_position.x, _position.y);
+        L09_Skipiste.crc2.beginPath();
+        L09_Skipiste.crc2.moveTo(0, 700);
+        L09_Skipiste.crc2.lineTo(0, -_max);
+        do {
+            x += stepMin + Math.random() * (stepMax - stepMin);
+            let y = -_min - Math.random() * (_max - _min);
+            L09_Skipiste.crc2.lineTo(x, y);
+        } while (x < L09_Skipiste.crc2.canvas.width);
+        L09_Skipiste.crc2.lineTo(x, 400);
+        L09_Skipiste.crc2.closePath();
+        let gradient = L09_Skipiste.crc2.createLinearGradient(0, 50, 0, -_max);
+        gradient.addColorStop(0, _colorLow);
+        gradient.addColorStop(0.7, _colorHigh);
+        L09_Skipiste.crc2.fillStyle = gradient;
+        L09_Skipiste.crc2.fill();
+        L09_Skipiste.crc2.restore();
+    }
+    L09_Skipiste.drawMountains = drawMountains;
 })(L09_Skipiste || (L09_Skipiste = {}));
 //# sourceMappingURL=Background.js.map

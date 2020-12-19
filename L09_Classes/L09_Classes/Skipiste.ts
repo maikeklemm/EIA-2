@@ -1,10 +1,11 @@
 namespace L09_Skipiste {
 
+    let imgData: ImageData;
     export interface Vekktor {
         x: number;
         y: number;
     }
-    let mountains:Mountains = new Mountains();
+    
 
     let skiers: Skier[] = [];
     let snowflakes: Snowflake[] = [];
@@ -26,7 +27,7 @@ namespace L09_Skipiste {
         drawBackground();
         drawSun({ x: 900, y: 75 });
         drawCloud({ x: 740, y: 175 }, { x: 250, y: 75 });
-        mountains.draw;
+        drawMountains({ x: 0, y:crc2.canvas.height * 0.38}, 75, 200, "#CCCCCC", "#FFFFFF");
         drawPiste();
         drawLift({ x: 1080, y: 100 });
         drawLift({ x: 700, y: 74 });
@@ -37,7 +38,7 @@ namespace L09_Skipiste {
         // let snowflake: Snowflake = new Snowflake();
         // snowflake.draw();
 
-        
+        imgData = crc2.getImageData(0, 0, canvas.width, canvas.height);
 
         createSkiers(5);
         createSnow(70);
@@ -68,16 +69,17 @@ namespace L09_Skipiste {
         function update(): void {
             console.log("update")
 
-          
+            crc2.clearRect(0, 0, crc2.canvas.width, crc2.canvas.height);
+            crc2.putImageData(imgData, 0, 0);
 
-        drawBackground();
-        drawSun({ x: 900, y: 75 });
-        drawCloud({ x: 740, y: 175 }, { x: 250, y: 75 });
-        mountains.draw;
-        drawPiste();
-        drawLift({ x: 1080, y: 100 });
-        drawLift({ x: 700, y: 74 });
-        drawHouse({ x: 0, y: 300 });
+        // drawBackground();
+        // drawSun({ x: 900, y: 75 });
+        // drawCloud({ x: 740, y: 175 }, { x: 250, y: 75 });
+        // mountains.draw;
+        // drawPiste();
+        // drawLift({ x: 1080, y: 100 });
+        // drawLift({ x: 700, y: 74 });
+        // drawHouse({ x: 0, y: 300 });
 
 
             // crc2.clearRect(0, 0, crc2.canvas.width, crc2.canvas.height);

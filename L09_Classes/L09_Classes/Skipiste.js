@@ -1,7 +1,7 @@
 "use strict";
 var L09_Skipiste;
 (function (L09_Skipiste) {
-    let mountains = new L09_Skipiste.Mountains();
+    let imgData;
     let skiers = [];
     let snowflakes = [];
     // let imgData: ImageData
@@ -15,7 +15,7 @@ var L09_Skipiste;
         L09_Skipiste.drawBackground();
         L09_Skipiste.drawSun({ x: 900, y: 75 });
         L09_Skipiste.drawCloud({ x: 740, y: 175 }, { x: 250, y: 75 });
-        mountains.draw;
+        L09_Skipiste.drawMountains({ x: 0, y: L09_Skipiste.crc2.canvas.height * 0.38 }, 75, 200, "#CCCCCC", "#FFFFFF");
         L09_Skipiste.drawPiste();
         L09_Skipiste.drawLift({ x: 1080, y: 100 });
         L09_Skipiste.drawLift({ x: 700, y: 74 });
@@ -24,6 +24,7 @@ var L09_Skipiste;
         // drawSnow();
         // let snowflake: Snowflake = new Snowflake();
         // snowflake.draw();
+        imgData = L09_Skipiste.crc2.getImageData(0, 0, canvas.width, canvas.height);
         createSkiers(5);
         createSnow(70);
         window.setInterval(update, 20);
@@ -47,14 +48,16 @@ var L09_Skipiste;
     }
     function update() {
         console.log("update");
-        L09_Skipiste.drawBackground();
-        L09_Skipiste.drawSun({ x: 900, y: 75 });
-        L09_Skipiste.drawCloud({ x: 740, y: 175 }, { x: 250, y: 75 });
-        mountains.draw;
-        L09_Skipiste.drawPiste();
-        L09_Skipiste.drawLift({ x: 1080, y: 100 });
-        L09_Skipiste.drawLift({ x: 700, y: 74 });
-        L09_Skipiste.drawHouse({ x: 0, y: 300 });
+        L09_Skipiste.crc2.clearRect(0, 0, L09_Skipiste.crc2.canvas.width, L09_Skipiste.crc2.canvas.height);
+        L09_Skipiste.crc2.putImageData(imgData, 0, 0);
+        // drawBackground();
+        // drawSun({ x: 900, y: 75 });
+        // drawCloud({ x: 740, y: 175 }, { x: 250, y: 75 });
+        // mountains.draw;
+        // drawPiste();
+        // drawLift({ x: 1080, y: 100 });
+        // drawLift({ x: 700, y: 74 });
+        // drawHouse({ x: 0, y: 300 });
         // crc2.clearRect(0, 0, crc2.canvas.width, crc2.canvas.height);
         // crc2.putImageData(imgData, 0, 0);
         for (let skier of skiers) {
