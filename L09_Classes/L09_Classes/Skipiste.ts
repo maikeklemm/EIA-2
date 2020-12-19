@@ -39,7 +39,7 @@ namespace L09_Skipiste {
 
         
 
-        createSkiers(6);
+        createSkiers(5);
         createSnow(70);
         window.setInterval(update, 20);
 

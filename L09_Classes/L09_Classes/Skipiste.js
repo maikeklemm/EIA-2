@@ -24,7 +24,7 @@ var L09_Skipiste;
         // drawSnow();
         // let snowflake: Snowflake = new Snowflake();
         // snowflake.draw();
-        createSkiers(6);
+        createSkiers(5);
         createSnow(70);
         window.setInterval(update, 20);
         // let skier: Skier = new Skier();
