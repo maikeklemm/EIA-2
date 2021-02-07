@@ -3,7 +3,7 @@ namespace L11_Skipiste {
     export class Skier extends Moveable {
 
         public isHit: boolean;
-        hitRadius : number;
+        public hitRadius : number;
         private color: string;
 
 

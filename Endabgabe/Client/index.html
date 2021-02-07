@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css" type="text/css" media="screen" />
+    <script src="GenerateData.js" type="text/javascript" charset="utf-8"></script>
+    <script src="main.js" type="text/javascript" charset="utf-8"></script>
+    <title>Fireworks - Maike Klemm</title>
+</head>
+
+<body>
+    <header>
+        <h1>HAPPY NEW YEAR!</h1>
+        <p>Create custom rockets and test them out.</p>
+    </header>
+
+    <div id="RocketFormDiv">
+        <form id="RocketForm">
+            <h2>Rocket creator:</h2>
+            <fieldset id=SizeSelector>
+                <legend>Select size</legend>
+                <span id="SelectSize">
+                    <span>
+                        small
+                        <input type="range" name="size" id="size" min="10" max="100" step="10" value="10">
+                        big
+                    </span>
+                </span>
+            </fieldset>
+            <fieldset id="ColorSelector">
+                <legend>Select color</legend>
+                <input type="color" id="color" name="color" value="#ff0000">
+            </fieldset>
+            <fieldset id="ShapeSelector">
+                <legend>Select shape</legend>
+                <input type="radio" name="shape" id="CircleShape" value="circle" checked />
+                <label for="CicleShape"> Round </label>
+                <input type="radio" name="shape" id="StarShape" value="star" />
+                <label for="StarShape">Star</label>
+                <input type="radio" name="shape" id="HeartShape" value="heart" />
+                <label for="HeartShape">Heart</label>
+            </fieldset>
+            <fieldset id="RocketName">
+                <legend>Name</legend>
+                <input name="name" id="Rocketname">
+            </fieldset>
+        </form>
+        <button type="reset" form="RocketForm">Reset</button>
+        <button type="button" form="RocketForm" id="save">Save</button>
+    </div>
+    <div id="Nightsky">
+        <h2>Nightsky/Test area:</h2>
+        <canvas width=200 height=200></canvas>
+    </div>
+    <div id="RocketButtons">
+        <button>Rocket1</button></br>
+        <button>Rocket2</button></br>
+        <button>Rocket3</button></br>
+    </div>
+</body>
+
+</html>
