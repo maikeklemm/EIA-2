@@ -1,12 +1,14 @@
 namespace Fireworks {
     window.addEventListener("load", handleLoad);
-    let url:string = "http://localhost:5001/";
+    // let url:string = "http://localhost:5001/";
+    let url: string = "https://einzigartig.herokuapp.com/";
+
 
     async function handleLoad(_event: Event): Promise<void> {
         console.log("Start");
         // let form: HTMLFormElement = <HTMLDivElement>document.querySelector("form");
 
-        let response: Response = await fetch("Data.json")   // nur für offer vom baarkeeper?
+        // let response: Response = await fetch("Data.json")   // nur für offer vom baarkeeper?
         // let offerrockets : string = await response.text();  // die drei zeilen gehören dazu
         // let data : Data = JSON.parse(offerrockets); // danach würde eig generate content stehen und das offer würde geladen werden
 
@@ -19,6 +21,7 @@ namespace Fireworks {
 
     }
     async function saveRocket(_event: Event): Promise<void> {
+        console.log("saverocket");
 
         let formData: FormData = new FormData(document.forms[0]);
         let query: URLSearchParams = new URLSearchParams(<any>formData);

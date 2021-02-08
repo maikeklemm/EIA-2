@@ -1,5 +1,5 @@
 namespace Fireworks {
-    export interface Rockets {
+    export interface Rocket {
         size: number;
         color: string;
         shape: string;

@@ -1,23 +1,52 @@
 import * as Http from "http";
 import * as Url from "url";
+import * as Mongo from "mongodb";
 
 
 export namespace Fireworks {
-    console.log("hi");
-    let server: Http.Server = Http.createServer();
 
+
+    interface RocketInstructions {
+        [type:string]:string | string[] | undefined;            //hier stimmt was nicht, welchen typ muss rocket haben? 
+    }
+
+    let rocketInstructions: Mongo.Collection;
 
     let port: number | string | undefined = process.env.PORT;
     if (port == undefined)
         port = 5001;
 
-    console.log("server starting on port:" + port);
-    server.listen(port);
+    let databaseUrl: string = "mongodb+srv://MyMongoDBUser:apfelbaum@eia2maike.6rcm4.mongodb.net/Potions?retryWrites=true&w=majority";
 
-    server.addListener("request", handleRequest);
+
+    startServer(port);
+    connectToDatabase(databaseUrl);
+
+
+    // Functions:
+
+    function startServer(_port: number | string): void {
+
+        console.log("Server starting on port:" + _port);
+
+        let server: Http.Server = Http.createServer();
+        console.log(server);
+        server.listen(_port);
+        server.addListener("request", handleRequest);
+    }
+
+    async function connectToDatabase(_url: string): Promise<void> {
+        let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
+        let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
+
+        await mongoClient.connect();
+        rocketInstructions = mongoClient.db("Fireworks").collection("RocketInstructions");
+        console.log("database connection ", rocketInstructions != undefined);
+
+    }
 
     function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
-        console.log("what up?");
+        console.log("handle request");
 
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
@@ -28,15 +57,24 @@ export namespace Fireworks {
             for (let key in url.query) {
                 _response.write(key + ":" + url.query[key] + "<br/>");
             }
+    
 
             let jsonString: string = JSON.stringify(url.query);
             _response.write(jsonString);
+
+            console.log("schicke rezept");
+            storeRocketInstruction(url.query);
         }
 
-        _response.write("this is my response");
         _response.end();
 
     }
+    function storeRocketInstruction(_rocketInstruction : RocketInstructions): void {
+        console.log("store rocket instruction");
+        rocketInstructions.insertOne(_rocketInstruction);
 
 
+
+
+}
 }

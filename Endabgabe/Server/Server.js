@@ -3,18 +3,33 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Fireworks = void 0;
 const Http = require("http");
 const Url = require("url");
+const Mongo = require("mongodb");
 var Fireworks;
 (function (Fireworks) {
-    console.log("hi");
-    let server = Http.createServer();
+    let rocketInstructions;
     let port = process.env.PORT;
     if (port == undefined)
         port = 5001;
-    console.log("server starting on port:" + port);
-    server.listen(port);
-    server.addListener("request", handleRequest);
+    let databaseUrl = "mongodb+srv://MyMongoDBUser:apfelbaum@eia2maike.6rcm4.mongodb.net/Potions?retryWrites=true&w=majority";
+    startServer(port);
+    connectToDatabase(databaseUrl);
+    // Functions:
+    function startServer(_port) {
+        console.log("Server starting on port:" + _port);
+        let server = Http.createServer();
+        console.log(server);
+        server.listen(_port);
+        server.addListener("request", handleRequest);
+    }
+    async function connectToDatabase(_url) {
+        let options = { useNewUrlParser: true, useUnifiedTopology: true };
+        let mongoClient = new Mongo.MongoClient(_url, options);
+        await mongoClient.connect();
+        rocketInstructions = mongoClient.db("Fireworks").collection("RocketInstructions");
+        console.log("database connection ", rocketInstructions != undefined);
+    }
     function handleRequest(_request, _response) {
-        console.log("what up?");
+        console.log("handle request");
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
         if (_request.url) {
@@ -24,9 +39,14 @@ var Fireworks;
             }
             let jsonString = JSON.stringify(url.query);
             _response.write(jsonString);
+            console.log("schicke rezept");
+            storeRocketInstruction(url.query);
         }
-        _response.write("this is my response");
         _response.end();
+    }
+    function storeRocketInstruction(_rocketInstruction) {
+        console.log("store rocket instruction");
+        rocketInstructions.insertOne(_rocketInstruction);
     }
 })(Fireworks = exports.Fireworks || (exports.Fireworks = {}));
 //# sourceMappingURL=Server.js.map
