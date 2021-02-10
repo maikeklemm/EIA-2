@@ -45,7 +45,7 @@ export namespace Fireworks {
 
     }
 
-    function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
+  async  function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
         console.log("handle request");
 
         _response.setHeader("content-type", "text/html; charset=utf-8");
