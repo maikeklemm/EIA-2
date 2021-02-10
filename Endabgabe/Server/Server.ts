@@ -71,7 +71,7 @@ export namespace Fireworks {
             else {
                 _response.write("This is your rocket: ");
                 let jsonString: string = JSON.stringify(url.query);
-                _response.write(jsonString + "whatthefuck?!");
+                _response.write(jsonString);
 
                 console.log("save rocket");
                 storeRocketInstruction(url.query);

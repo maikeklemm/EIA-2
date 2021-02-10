@@ -15,14 +15,6 @@ namespace Fireworks {
         // für datenbank und server:
 
 
-        // let form: HTMLFormElement = <HTMLDivElement>document.querySelector("form");
-
-        // let response: Response = await fetch("Data.json")   // nur für offer vom baarkeeper?
-        // let offerrockets : string = await response.text();  // die drei zeilen gehören dazu
-        // let data : Data = JSON.parse(offerrockets); // danach würde eig generate content stehen und das offer würde geladen werden
-
-
-
         // let firstbutton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#firstbutton");
         // firstbutton.addEventListener("click", useRocket);
 
