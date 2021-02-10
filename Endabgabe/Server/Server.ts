@@ -7,7 +7,7 @@ export namespace Fireworks {
 
 
     interface RocketInstructions {
-        [type:string]:string | string[] | undefined;            //hier stimmt was nicht, welchen typ muss rocket haben? 
+        [type: string]: string | string[] | undefined;            //hier stimmt was nicht, welchen typ muss rocket haben? 
     }
 
     let rocketInstructions: Mongo.Collection;
@@ -52,29 +52,37 @@ export namespace Fireworks {
         _response.setHeader("Access-Control-Allow-Origin", "*");
 
 
+
+
         if (_request.url) {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
-            for (let key in url.query) {
-                _response.write(key + ":" + url.query[key] + "<br/>");
+
+            let command: string | string[] | undefined = url.query["command"];
+
+            if (command == "retrieve") {
+                console.log("retrieve rocket instructions");
+                let currentRocketInstruction: Mongo.Cursor = rocketInstructions.find();
+                console.log(currentRocketInstruction);
+                let currentRocketInstructionString: string = JSON.stringify(await currentRocketInstruction.toArray());
+                console.log(currentRocketInstructionString);
+                _response.write("currently selected rocket: ");
+                _response.write(currentRocketInstructionString);
             }
-    
+            else {
+                _response.write("This is your rocket: ");
+                let jsonString: string = JSON.stringify(url.query);
+                _response.write(jsonString + "whatthefuck?!");
 
-            let jsonString: string = JSON.stringify(url.query);
-            _response.write(jsonString);
-
-            console.log("schicke rezept");
-            storeRocketInstruction(url.query);
+                console.log("save rocket");
+                storeRocketInstruction(url.query);
+            }
         }
-
         _response.end();
 
     }
-    function storeRocketInstruction(_rocketInstruction : RocketInstructions): void {
+    function storeRocketInstruction(_rocketInstruction: RocketInstructions): void {
         console.log("store rocket instruction");
         rocketInstructions.insertOne(_rocketInstruction);
 
-
-
-
-}
+    }
 }

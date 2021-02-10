@@ -34,13 +34,23 @@ var Fireworks;
         _response.setHeader("Access-Control-Allow-Origin", "*");
         if (_request.url) {
             let url = Url.parse(_request.url, true);
-            for (let key in url.query) {
-                _response.write(key + ":" + url.query[key] + "<br/>");
+            let command = url.query["command"];
+            if (command == "retrieve") {
+                console.log("retrieve rocket instructions");
+                let currentRocketInstruction = rocketInstructions.find();
+                console.log(currentRocketInstruction);
+                let currentRocketInstructionString = JSON.stringify(await currentRocketInstruction.toArray());
+                console.log(currentRocketInstructionString);
+                _response.write("currently selected rocket: ");
+                _response.write(currentRocketInstructionString);
             }
-            let jsonString = JSON.stringify(url.query);
-            _response.write(jsonString);
-            console.log("schicke rezept");
-            storeRocketInstruction(url.query);
+            else {
+                _response.write("This is your rocket: ");
+                let jsonString = JSON.stringify(url.query);
+                _response.write(jsonString + "whatthefuck?!");
+                console.log("save rocket");
+                storeRocketInstruction(url.query);
+            }
         }
         _response.end();
     }
