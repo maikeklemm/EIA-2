@@ -37,12 +37,12 @@ var Fireworks;
             let command = url.query["command"];
             if (command == "retrieve") {
                 console.log("retrieve rocket instructions");
-                let currentRocketInstruction = rocketInstructions.find();
-                console.log(currentRocketInstruction);
-                let currentRocketInstructionString = JSON.stringify(await currentRocketInstruction.toArray());
-                console.log(currentRocketInstructionString);
-                _response.write("currently selected rocket: ");
-                _response.write(currentRocketInstructionString);
+                let allRocketInstructions = rocketInstructions.find();
+                console.log(allRocketInstructions);
+                let allRocketInstructionsString = JSON.stringify(await allRocketInstructions.toArray());
+                console.log(allRocketInstructionsString);
+                // _response.write("all saved rocket: ");
+                _response.write(allRocketInstructionsString);
             }
             else {
                 _response.write("This is your rocket: ");

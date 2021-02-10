@@ -23,9 +23,10 @@ namespace Fireworks {
 
 
 
-        let firstbutton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#firstbutton");
-        firstbutton.addEventListener("click", useRocket);
+        // let firstbutton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#firstbutton");
+        // firstbutton.addEventListener("click", useRocket);
 
+        findRockets();
 
         let save: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#save");
         save.addEventListener("click", saveRocket);
@@ -46,9 +47,9 @@ namespace Fireworks {
         // firework.draw();
         // firework.move(0.1);
 
-        createFirework(1);
+        // createFirework(1);
 
-        window.setInterval(update, 20);
+        // window.setInterval(update, 20);
 
     }
 
@@ -74,16 +75,25 @@ namespace Fireworks {
     
     }
 
-    async function useRocket() : Promise<void> {
+    async function findRockets() : Promise<void> {
         let response: Response = await fetch(url + "?" + "command=retrieve");
         let responseText: string = await response.text();
         console.log(responseText);
-        alert(responseText.replace(/<br>/g, " "));
+        // alert(responseText.replace(/<br>/g, " "));
         
-        
-        console.log(fireworks)
+        createButtons(responseText);
+
     }
 
+    function createButtons(_allSavedRockets: string): void {
+        let rockets = _allSavedRockets;
+        let rocketArray = JSON.parse(rockets);
+        console.log("create buttons arrrrrrrray  " + rocketArray);
+        let rocketButtonDiv: HTMLElement = <HTMLElement>document.querySelector("div#RocketButtons");
+        //listener?
+
+
+    }
     //Funktionen für Canvas:
     // function createBackground(){
     //     console.log("background")
@@ -99,25 +109,7 @@ namespace Fireworks {
     }
 
 
-    // function drawfirework(): void {
-
-    //     crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
-
-    //     let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
-
-    //     for (let i = 0; i < 99; i++) {
-    //         let x: number = (Math.random() * canvas.width);
-    //         let y: number = (Math.random() * canvas.height);
-
-    //         crc2.beginPath();
-    //         crc2.moveTo(200, 200);
-    //         crc2.lineTo(x, y);
-    //         crc2.strokeStyle = "white";    //_color
-    //         crc2.lineWidth = 2;
-    //         crc2.stroke();
-
-    //     }
-    // }
+   
 
     function update(): void {
         console.log("Update");

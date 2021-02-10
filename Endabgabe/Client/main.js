@@ -13,8 +13,9 @@ var Fireworks;
         // let response: Response = await fetch("Data.json")   // nur für offer vom baarkeeper?
         // let offerrockets : string = await response.text();  // die drei zeilen gehören dazu
         // let data : Data = JSON.parse(offerrockets); // danach würde eig generate content stehen und das offer würde geladen werden
-        let firstbutton = document.querySelector("button#firstbutton");
-        firstbutton.addEventListener("click", useRocket);
+        // let firstbutton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#firstbutton");
+        // firstbutton.addEventListener("click", useRocket);
+        findRockets();
         let save = document.querySelector("button#save");
         save.addEventListener("click", saveRocket);
         // für canvas:
@@ -29,8 +30,8 @@ var Fireworks;
         // console.log(firework);
         // firework.draw();
         // firework.move(0.1);
-        createFirework(1);
-        window.setInterval(update, 20);
+        // createFirework(1);
+        // window.setInterval(update, 20);
     }
     // Funktionen für Fromular 
     async function saveRocket(_event) {
@@ -47,12 +48,19 @@ var Fireworks;
             // console.log(item);
         }
     }
-    async function useRocket() {
+    async function findRockets() {
         let response = await fetch(url + "?" + "command=retrieve");
         let responseText = await response.text();
         console.log(responseText);
-        alert(responseText.replace(/<br>/g, " "));
-        console.log(fireworks);
+        // alert(responseText.replace(/<br>/g, " "));
+        createButtons(responseText);
+    }
+    function createButtons(_allSavedRockets) {
+        let rockets = _allSavedRockets;
+        let rocketArray = JSON.parse(rockets);
+        console.log("create buttons arrrrrrrray  " + rocketArray);
+        let rocketButtonDiv = document.querySelector("div#RocketButtons");
+        //listener?
     }
     //Funktionen für Canvas:
     // function createBackground(){
@@ -66,20 +74,6 @@ var Fireworks;
             fireworks.push(firework);
         }
     }
-    // function drawfirework(): void {
-    //     crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
-    //     let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
-    //     for (let i = 0; i < 99; i++) {
-    //         let x: number = (Math.random() * canvas.width);
-    //         let y: number = (Math.random() * canvas.height);
-    //         crc2.beginPath();
-    //         crc2.moveTo(200, 200);
-    //         crc2.lineTo(x, y);
-    //         crc2.strokeStyle = "white";    //_color
-    //         crc2.lineWidth = 2;
-    //         crc2.stroke();
-    //     }
-    // }
     function update() {
         console.log("Update");
         Fireworks.crc2.fillRect(0, 0, Fireworks.crc2.canvas.width, Fireworks.crc2.canvas.height);

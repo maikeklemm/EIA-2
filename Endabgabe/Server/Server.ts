@@ -61,12 +61,12 @@ export namespace Fireworks {
 
             if (command == "retrieve") {
                 console.log("retrieve rocket instructions");
-                let currentRocketInstruction: Mongo.Cursor = rocketInstructions.find();
-                console.log(currentRocketInstruction);
-                let currentRocketInstructionString: string = JSON.stringify(await currentRocketInstruction.toArray());
-                console.log(currentRocketInstructionString);
-                _response.write("currently selected rocket: ");
-                _response.write(currentRocketInstructionString);
+                let allRocketInstructions: Mongo.Cursor = rocketInstructions.find();
+                console.log(allRocketInstructions);
+                let allRocketInstructionsString: string = JSON.stringify(await allRocketInstructions.toArray());
+                console.log(allRocketInstructionsString);
+                // _response.write("all saved rocket: ");
+                _response.write(allRocketInstructionsString);
             }
             else {
                 _response.write("This is your rocket: ");
