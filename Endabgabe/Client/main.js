@@ -24,14 +24,9 @@ var Fireworks;
             return;
         Fireworks.crc2 = canvas.getContext("2d");
         Fireworks.crc2.fillStyle = "black";
-        // canvas.addEventListener("click", startFirework);
-        // createBackground();
-        // let firework: Rocket =new Rocket(20, "blue")
-        // console.log(firework);
-        // firework.draw();
-        // firework.move(0.1);
+        canvas.addEventListener("click", createFirework);
         // createFirework(1);
-        // window.setInterval(update, 20);
+        window.setInterval(update, 20);
     }
     // Funktionen für Fromular 
     async function saveRocket(_event) {
@@ -58,7 +53,7 @@ var Fireworks;
     function createButtons(_allSavedRockets) {
         let rockets = _allSavedRockets;
         let rocketArray = JSON.parse(rockets);
-        console.log("create buttons arrrrrrrray  " + rocketArray);
+        console.log("create buttons array  " + rocketArray);
         let rocketButtonDiv = document.querySelector("div#RocketButtons");
         //listener?
     }
@@ -67,13 +62,20 @@ var Fireworks;
     //     console.log("background")
     //     crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
     // }
-    function createFirework(_nRockets) {
+    function createFirework(_event) {
         console.log("Create firework");
-        for (let i = 0; i < _nRockets; i++) {
+        console.log(_event);
+        for (let i = 0; i < 1; i++) {
             let firework = new Fireworks.Rocket(10, "red");
             fireworks.push(firework);
         }
     }
+    // function particleGo():void {
+    //     for(let i=0; i<400; i++){
+    //         let particles: Particle = new Particle();
+    //         particles.push(fireworks);
+    //     }
+    // }
     function update() {
         console.log("Update");
         Fireworks.crc2.fillRect(0, 0, Fireworks.crc2.canvas.width, Fireworks.crc2.canvas.height);

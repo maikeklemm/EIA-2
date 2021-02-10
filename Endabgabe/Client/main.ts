@@ -38,21 +38,16 @@ namespace Fireworks {
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
         crc2.fillStyle = "black";
 
-        // canvas.addEventListener("click", startFirework);
+        canvas.addEventListener("click", createFirework);
 
-        // createBackground();
-
-        // let firework: Rocket =new Rocket(20, "blue")
-        // console.log(firework);
-        // firework.draw();
-        // firework.move(0.1);
 
         // createFirework(1);
 
-        // window.setInterval(update, 20);
+        window.setInterval(update, 20);
 
     }
 
+    
     // Funktionen für Fromular 
 
     async function saveRocket(_event: Event): Promise<void> {
@@ -88,7 +83,7 @@ namespace Fireworks {
     function createButtons(_allSavedRockets: string): void {
         let rockets = _allSavedRockets;
         let rocketArray = JSON.parse(rockets);
-        console.log("create buttons arrrrrrrray  " + rocketArray);
+        console.log("create buttons array  " + rocketArray);
         let rocketButtonDiv: HTMLElement = <HTMLElement>document.querySelector("div#RocketButtons");
         //listener?
 
@@ -100,15 +95,23 @@ namespace Fireworks {
     //     crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
 
     // }
-    function createFirework(_nRockets: number): void {
+    function createFirework(_event:Event): void {
         console.log("Create firework");
-        for (let i: number = 0; i < _nRockets; i++) {
+        console.log(_event);
+        for (let i: number = 0; i < 1; i++) {
             let firework: Rocket = new Rocket(10, "red");
             fireworks.push(firework);
         }
     }
 
+    // function particleGo():void {
 
+    //     for(let i=0; i<400; i++){
+    //         let particles: Particle = new Particle();
+    //         particles.push(fireworks);
+
+    //     }
+    // }
    
 
     function update(): void {

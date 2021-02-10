@@ -42,28 +42,5 @@ var Fireworks;
         }
     }
     Fireworks.Rocket = Rocket;
-    //     drawfirework(): void {
-    //     crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
-    //     let canvas: HTMLCanvasElement | null = <HTMLCanvasElement>document.querySelector("canvas");
-    //     for (let i = 0; i < 99; i++) {
-    //         let x: number = (Math.random() * canvas.width);
-    //         let y: number = (Math.random() * canvas.height);
-    //         crc2.beginPath();
-    //         crc2.moveTo(200, 200);
-    //         crc2.lineTo(x, y);
-    //         crc2.strokeStyle = "white";    //_color
-    //         crc2.lineWidth = 2;
-    //         crc2.stroke();
-    //     }
-    // }
-    // }
-    //     //     // let CirclePosition: number[][] = [[10, 10], [20, 20], [30, 30], [40, 40], [50, 50], [60, 60]]
-    //     //     // let shape: number[] = CirclePosition[Math.floor(Math.random() * CirclePosition.length)]
-    //     //     // crc2.beginPath();
-    //     //     // crc2.moveTo(200, 200);
-    //     //     // crc2.lineTo(shape);
-    //     //     // crc2.strokeStyle = "white";    //_color
-    //     //     // crc2.lineWidth = 2;
-    //     //     // crc2.stroke();
 })(Fireworks || (Fireworks = {}));
 //# sourceMappingURL=Rocket.js.map
