@@ -10,11 +10,6 @@ namespace Fireworks {
 
 
 
-
-
-
-
-
         constructor(_size: number, _color: string, _positionX: number, _positionY: number, _offset: number, _i:number) {
 
             super(_size, _color, _positionX, _positionY, _offset, _i);
