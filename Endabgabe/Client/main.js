@@ -4,7 +4,14 @@ var Fireworks;
     window.addEventListener("load", handleLoad);
     // let url:string = "http://localhost:5001/";
     let url = "https://einzigartig.herokuapp.com/";
+    // export interface RocketInstruction  {
+    //     size: number;
+    //     color: string;
+    //     shape: string;
+    //     name: string;
+    // }
     let fireworks = [];
+    let rocketArray = []; // : Rocketinstructions?
     //Funktionen:
     async function handleLoad(_event) {
         console.log("Start");
@@ -19,7 +26,6 @@ var Fireworks;
         if (!canvas)
             return;
         Fireworks.crc2 = canvas.getContext("2d");
-        Fireworks.crc2.fillStyle = "black";
         canvas.addEventListener("click", createFirework);
         // createFirework(1);
         window.setInterval(update, 20);
@@ -48,10 +54,16 @@ var Fireworks;
     }
     function createButtons(_allSavedRockets) {
         let rockets = _allSavedRockets;
-        let rocketArray = JSON.parse(rockets);
-        console.log("create buttons array  " + rocketArray);
+        rockets = JSON.parse(rockets);
+        rocketArray.push(rockets);
+        // console.log(rocketArray);
+        // console.log("create buttons array  " + rocketArray);
         let rocketButtonDiv = document.querySelector("div#RocketButtons");
         //listener?
+        for (let rocketInstruction of rocketArray) {
+            let currentRocketInstruction = rocketInstruction[1];
+            console.log(currentRocketInstruction);
+        }
     }
     //Funktionen für Canvas:
     // function createBackground(){
@@ -60,10 +72,14 @@ var Fireworks;
     // }
     function createFirework(_event) {
         console.log("Create firework");
-        console.log(_event);
-        for (let i = 0; i < 1; i++) {
-            let firework = new Fireworks.Rocket(10, "red");
+        let mouseX = _event.offsetX;
+        let mouseY = _event.offsetY;
+        let particleAmount = 15;
+        let offset = (Math.PI * 2) / particleAmount;
+        for (let i = 0; i < particleAmount; i++) {
+            let firework = new Fireworks.HeartParticle(2, "blue", mouseX, mouseY, offset, i);
             fireworks.push(firework);
+            console.log(fireworks);
         }
     }
     // function particleGo():void {
@@ -74,18 +90,20 @@ var Fireworks;
     // }
     function update() {
         console.log("Update");
+        Fireworks.crc2.fillStyle = "rgba(0, 0, 0, 0.09)";
         Fireworks.crc2.fillRect(0, 0, Fireworks.crc2.canvas.width, Fireworks.crc2.canvas.height);
         for (let firework of fireworks) {
             firework.move(1 / 50);
             firework.draw();
         }
-        // function startFirework(_event: MouseEvent): void {
-        //     console.log("start firework");
-        //     let origin: Vector = new Vector(_event.clientX - crc2.canvas.offsetLeft, _event.clientY - crc2.canvas.offsetTop);
-        //     let velocity: Vector = new Vector(100, 100);
-        //     let particle: Particle = new Particle(origin, velocity);
-        //     fireworks.push(particle);
-        // }
+        deleteExpandables();
+    }
+    function deleteExpandables() {
+        for (let i = fireworks.length - 1; i >= 0; i--) {
+            if (fireworks[i].expendable)
+                fireworks.splice(i, 1);
+            // console.log(fireworks);
+        }
     }
 })(Fireworks || (Fireworks = {}));
 //# sourceMappingURL=main.js.map

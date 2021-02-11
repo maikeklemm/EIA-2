@@ -5,7 +5,15 @@ namespace Fireworks {
     export let crc2: CanvasRenderingContext2D;
 
 
+    // export interface RocketInstruction  {
+    //     size: number;
+    //     color: string;
+    //     shape: string;
+    //     name: string;
+    // }
+
     let fireworks: Rocket[] = [];
+    let rocketArray : string[]= [];     // : Rocketinstructions?
 
     //Funktionen:
 
@@ -28,7 +36,7 @@ namespace Fireworks {
         if (!canvas)
             return;
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
-        crc2.fillStyle = "black";
+       
 
         canvas.addEventListener("click", createFirework);
 
@@ -74,11 +82,20 @@ namespace Fireworks {
 
     function createButtons(_allSavedRockets: string): void {
         let rockets = _allSavedRockets;
-        let rocketArray = JSON.parse(rockets);
-        console.log("create buttons array  " + rocketArray);
+        rockets = JSON.parse(rockets);
+        rocketArray.push(rockets);
+            // console.log(rocketArray);
+
+        // console.log("create buttons array  " + rocketArray);
         let rocketButtonDiv: HTMLElement = <HTMLElement>document.querySelector("div#RocketButtons");
         //listener?
 
+        for(let rocketInstruction of rocketArray){
+            let currentRocketInstruction :string = rocketInstruction[1];
+            console.log(currentRocketInstruction );
+
+
+        }
 
     }
     //Funktionen für Canvas:
@@ -87,12 +104,19 @@ namespace Fireworks {
     //     crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
 
     // }
-    function createFirework(_event:Event): void {
+    function createFirework(_event:MouseEvent): void {
         console.log("Create firework");
-        console.log(_event);
-        for (let i: number = 0; i < 1; i++) {
-            let firework: Rocket = new Rocket(10, "red");
+
+        let mouseX : number = _event.offsetX;
+        let mouseY : number = _event.offsetY;
+
+        let particleAmount: number = 15;
+        let offset: number = (Math.PI * 2)/ particleAmount;
+
+        for (let i: number = 0; i < particleAmount; i++) {
+            let firework: HeartParticle = new HeartParticle(2, "blue", mouseX, mouseY, offset, i);
             fireworks.push(firework);
+            console.log(fireworks);
         }
     }
 
@@ -108,6 +132,7 @@ namespace Fireworks {
 
     function update(): void {
         console.log("Update");
+        crc2.fillStyle = "rgba(0, 0, 0, 0.09)"
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
 
         for (let firework of fireworks) {
@@ -115,13 +140,21 @@ namespace Fireworks {
             firework.draw();
         }
 
-        // function startFirework(_event: MouseEvent): void {
-        //     console.log("start firework");
-        //     let origin: Vector = new Vector(_event.clientX - crc2.canvas.offsetLeft, _event.clientY - crc2.canvas.offsetTop);
-        //     let velocity: Vector = new Vector(100, 100);
-        //     let particle: Particle = new Particle(origin, velocity);
-        //     fireworks.push(particle);
-        // }
+       
+
+        deleteExpandables();
 
     }
+
+
+    function deleteExpandables(): void {
+        for (let i: number = fireworks.length - 1; i >= 0; i--) {
+            if (fireworks[i].expendable)
+                fireworks.splice(i, 1);
+                // console.log(fireworks);
+        }
+    }
+
+
+
 }
