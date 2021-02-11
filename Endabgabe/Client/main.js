@@ -4,12 +4,6 @@ var Fireworks;
     window.addEventListener("load", handleLoad);
     // let url:string = "http://localhost:5001/";
     let url = "https://einzigartig.herokuapp.com/";
-    // export interface RocketInstruction  {
-    //     size: number;
-    //     color: string;
-    //     shape: string;
-    //     name: string;
-    // }
     let fireworks = [];
     let rocketArray = []; // : Rocketinstructions?
     //Funktionen:
@@ -55,13 +49,17 @@ var Fireworks;
     function createButtons(_allSavedRockets) {
         let rockets = _allSavedRockets;
         rockets = JSON.parse(rockets);
-        rocketArray.push(rockets);
-        // console.log(rocketArray);
+        // rocketArray.push(rockets);
+        console.log(rockets);
         // console.log("create buttons array  " + rocketArray);
         let rocketButtonDiv = document.querySelector("div#RocketButtons");
         //listener?
-        for (let rocketInstruction of rocketArray) {
-            let currentRocketInstruction = rocketInstruction[1];
+        // for(let rocketInstruction of rocketArray){
+        //     let currentRocketInstruction :string = rocketInstruction[1].color;
+        //     console.log(currentRocketInstruction );
+        // }
+        for (let i = 0; i < rockets.length; i++) {
+            let currentRocketInstruction = rockets[i].color; //as unknown as RocketInstruction)
             console.log(currentRocketInstruction);
         }
     }

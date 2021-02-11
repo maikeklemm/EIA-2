@@ -5,12 +5,12 @@ namespace Fireworks {
     export let crc2: CanvasRenderingContext2D;
 
 
-    // export interface RocketInstruction  {
-    //     size: number;
-    //     color: string;
-    //     shape: string;
-    //     name: string;
-    // }
+    export interface RocketInstruction  {
+        size: number;
+        color: string;
+        shape: string;
+        name: string;
+    }
 
     let fireworks: Rocket[] = [];
     let rocketArray : string[]= [];     // : Rocketinstructions?
@@ -83,20 +83,23 @@ namespace Fireworks {
     function createButtons(_allSavedRockets: string): void {
         let rockets = _allSavedRockets;
         rockets = JSON.parse(rockets);
-        rocketArray.push(rockets);
-            // console.log(rocketArray);
+        // rocketArray.push(rockets);
+        console.log(rockets);
 
         // console.log("create buttons array  " + rocketArray);
         let rocketButtonDiv: HTMLElement = <HTMLElement>document.querySelector("div#RocketButtons");
         //listener?
 
-        for(let rocketInstruction of rocketArray){
-            let currentRocketInstruction :string = rocketInstruction[1];
+        // for(let rocketInstruction of rocketArray){
+        //     let currentRocketInstruction :string = rocketInstruction[1].color;
+        //     console.log(currentRocketInstruction );
+        // }
+
+        for (let i:number= 0; i< rockets.length; i++){
+
+            let currentRocketInstruction :string = (rockets[i] as unknown as RocketInstruction).color;    //as unknown as RocketInstruction)
             console.log(currentRocketInstruction );
-
-
         }
-
     }
     //Funktionen für Canvas:
     // function createBackground(){
