@@ -5,13 +5,11 @@ var Fireworks;
     // let url:string = "http://localhost:5001/";
     let url = "https://einzigartig.herokuapp.com/";
     let fireworks = [];
-    let rocketArray = []; // : Rocketinstructions?
+    // let rocketArray : string[]= [];     // : Rocketinstructions?
     //Funktionen:
     async function handleLoad(_event) {
         console.log("Start");
         // für datenbank und server:
-        // let firstbutton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#firstbutton");
-        // firstbutton.addEventListener("click", useRocket);
         findRockets();
         let save = document.querySelector("button#save");
         save.addEventListener("click", saveRocket);
@@ -20,8 +18,7 @@ var Fireworks;
         if (!canvas)
             return;
         Fireworks.crc2 = canvas.getContext("2d");
-        canvas.addEventListener("click", createFirework);
-        // createFirework(1);
+        // canvas.addEventListener("click", createFirework);
         window.setInterval(update, 20);
     }
     // Funktionen für Fromular 
@@ -35,8 +32,6 @@ var Fireworks;
         // console.log (formData);
         for (let entry of formData) {
             console.log(entry);
-            // let item: HTMLInputElement = <HTMLInputElement> document.querySelector("[value='" + entry[1] + "']");    /brauche ich nur wenn ich auf ein weiteres attribut zugreifen will wie price
-            // console.log(item);
         }
     }
     async function findRockets() {
@@ -47,27 +42,87 @@ var Fireworks;
         createButtons(responseText);
     }
     function createButtons(_allSavedRockets) {
+        let canvas = document.querySelector("canvas");
         let rockets = _allSavedRockets;
         rockets = JSON.parse(rockets);
-        // rocketArray.push(rockets);
         console.log(rockets);
         // console.log("create buttons array  " + rocketArray);
-        let rocketButtonDiv = document.querySelector("div#RocketButtons");
-        //listener?
-        // for(let rocketInstruction of rocketArray){
-        //     let currentRocketInstruction :string = rocketInstruction[1].color;
-        //     console.log(currentRocketInstruction );
-        // }
+        let rocketButtonDiv = document.querySelector("div#Nightsky");
         for (let i = 0; i < rockets.length; i++) {
-            let currentRocketInstruction = rockets[i].color; //as unknown as RocketInstruction)
-            console.log(currentRocketInstruction);
+            let currentRocketName = rockets[i].name;
+            console.log(currentRocketName);
+            let currentRocketColor = rockets[i].color;
+            console.log(currentRocketColor);
+            let currentRocketSize = rockets[i].size;
+            console.log(currentRocketSize);
+            let currentRocketShape = rockets[i].shape;
+            console.log(currentRocketShape);
+            let currentRocketButton = document.createElement("button");
+            rocketButtonDiv.appendChild(currentRocketButton);
+            currentRocketButton.innerText = currentRocketName;
+            // currentRocketButton.addEventListener("click", clickedRocketButton)
+            switch (currentRocketShape) {
+                case "star":
+                    // canvas.removeEventListener("click", StarRocket, false); 
+                    currentRocketButton.addEventListener("click", clickStarShape);
+                    function clickStarShape(_event) {
+                        canvas.addEventListener("click", StarRocket);
+                        function StarRocket(_event) {
+                            console.log("this is a star");
+                            console.log("Create firework");
+                            let mouseX = _event.offsetX;
+                            let mouseY = _event.offsetY;
+                            let particleAmount = 15;
+                            let offset = (Math.PI * 2) / particleAmount;
+                            for (let i = 0; i < particleAmount; i++) {
+                                let firework = new Fireworks.StarParticle(currentRocketSize, currentRocketColor, mouseX, mouseY, offset, i);
+                                fireworks.push(firework);
+                                console.log(fireworks);
+                            }
+                        }
+                    }
+                    break;
+                case "heart":
+                    currentRocketButton.addEventListener("click", HeartRocket);
+                    function HeartRocket(_event) {
+                        console.log("this is a  heart");
+                        console.log("Create firework");
+                        // let mouseX: number = _event.offsetX;
+                        // let mouseY: number = _event.offsetY;
+                        let particleAmount = 15;
+                        let offset = (Math.PI * 2) / particleAmount;
+                        for (let i = 0; i < particleAmount; i++) {
+                            let firework = new Fireworks.HeartParticle(currentRocketSize, currentRocketColor, 200, 200, offset, i);
+                            fireworks.push(firework);
+                            console.log(fireworks);
+                        }
+                    }
+                    break;
+                case "circle":
+                    currentRocketButton.addEventListener("click", CircleRocket);
+                    function CircleRocket(_event) {
+                        console.log("this is a  circle");
+                        console.log("Create firework");
+                        // let mouseX: number = _event.offsetX;
+                        // let mouseY: number = _event.offsetY;
+                        let particleAmount = 15;
+                        let offset = (Math.PI * 2) / particleAmount;
+                        for (let i = 0; i < particleAmount; i++) {
+                            let firework = new Fireworks.CircleParticle(currentRocketSize, currentRocketColor, 200, 200, offset, i);
+                            fireworks.push(firework);
+                            console.log(fireworks);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
+    function clickedRocketButton() {
+        console.log(" you clicked a button");
+    }
     //Funktionen für Canvas:
-    // function createBackground(){
-    //     console.log("background")
-    //     crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
-    // }
     function createFirework(_event) {
         console.log("Create firework");
         let mouseX = _event.offsetX;
@@ -80,12 +135,6 @@ var Fireworks;
             console.log(fireworks);
         }
     }
-    // function particleGo():void {
-    //     for(let i=0; i<400; i++){
-    //         let particles: Particle = new Particle();
-    //         particles.push(fireworks);
-    //     }
-    // }
     function update() {
         console.log("Update");
         Fireworks.crc2.fillStyle = "rgba(0, 0, 0, 0.09)";

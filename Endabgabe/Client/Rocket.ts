@@ -14,7 +14,7 @@ namespace Fireworks {
 
 
         constructor(_size: number, _color: string, _positionX: number, _positionY: number, _offset: number, _i:number) {
-            console.log("rocket constructor");
+            // console.log("rocket constructor");
 
             this.position = new Vector(0, 0);
             this.position.x = _positionX;
