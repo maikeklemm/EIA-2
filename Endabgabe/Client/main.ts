@@ -57,7 +57,7 @@ namespace Fireworks {
 
         let responseText: string = await response.text();
 
-        alert(responseText);
+        alert(responseText, " PLEASE RELOAD THE PAGE");
 
         // console.log (formData);
         for (let entry of formData) {

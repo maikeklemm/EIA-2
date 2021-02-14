@@ -7,7 +7,7 @@ export namespace Fireworks {
 
 
     interface RocketInstructions {
-        [type: string]: string | string[] | undefined;            //hier stimmt was nicht, welchen typ muss rocket haben? 
+        [type: string]: string | string[] | undefined;            //
     }
 
     let rocketInstructions: Mongo.Collection;
@@ -72,8 +72,7 @@ export namespace Fireworks {
                 _response.write("This is your rocket: ");
                 let jsonString: string = JSON.stringify(url.query);
                 _response.write(jsonString);
-                _response.write("                                                  Please reload the page.");
-
+              
                 console.log("save rocket");
                 storeRocketInstruction(url.query);
             }
