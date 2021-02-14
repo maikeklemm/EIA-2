@@ -5,7 +5,7 @@ var Fireworks;
         constructor(_size, _color, _positionX, _positionY, _offset, _i) {
             // console.log("rocket constructor");
             this.expendable = false;
-            this.lifetime = Fireworks.HeartParticle.maxLifetime;
+            this.lifetime = Rocket.maxLifetime;
             this.position = new Fireworks.Vector(0, 0);
             this.position.x = _positionX;
             this.position.y = _positionY;

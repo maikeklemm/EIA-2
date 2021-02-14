@@ -4,8 +4,8 @@ var Fireworks;
     window.addEventListener("load", handleLoad);
     // let url:string = "http://localhost:5001/";
     let url = "https://einzigartig.herokuapp.com/";
-    let fireworks = [];
-    // let rocketArray : string[]= [];     // : Rocketinstructions?
+    let fireworks = []; // Array, dass alle aktuell auf dem Canvas sichtbaren Feuerwerke zeigt
+    let activeRocket = null; //meine globale Variable, die die RocketInstructions des aktuell geklickten Buttons hält
     //Funktionen:
     async function handleLoad(_event) {
         console.log("Start");
@@ -18,7 +18,11 @@ var Fireworks;
         if (!canvas)
             return;
         Fireworks.crc2 = canvas.getContext("2d");
-        // canvas.addEventListener("click", createFirework);
+        canvas.addEventListener("click", (_event) => {
+            if (activeRocket != null) {
+                startFirework(_event);
+            }
+        });
         window.setInterval(update, 20);
     }
     // Funktionen für Fromular 
@@ -38,106 +42,62 @@ var Fireworks;
         let response = await fetch(url + "?" + "command=retrieve");
         let responseText = await response.text();
         console.log(responseText);
-        // alert(responseText.replace(/<br>/g, " "));
         createButtons(responseText);
     }
     function createButtons(_allSavedRockets) {
-        let canvas = document.querySelector("canvas");
         let rockets = _allSavedRockets;
         rockets = JSON.parse(rockets);
-        console.log(rockets);
-        // console.log("create buttons array  " + rocketArray);
-        let rocketButtonDiv = document.querySelector("div#Nightsky");
-        for (let i = 0; i < rockets.length; i++) {
-            let currentRocketName = rockets[i].name;
-            console.log(currentRocketName);
-            let currentRocketColor = rockets[i].color;
-            console.log(currentRocketColor);
-            let currentRocketSize = rockets[i].size;
-            console.log(currentRocketSize);
-            let currentRocketShape = rockets[i].shape;
-            console.log(currentRocketShape);
+        // console.log(rockets);
+        let rocketButtonDiv = document.querySelector("div#RocketButtons");
+        for (let i = 0; i < rockets.length; i++) { // die einzelnen RocketInstructions aus der Serverantwort werden durchgegangen
+            let currentRocket = rockets[i]; // die aktuelle Rocketinstruction wird ins Format des Interfaces "Rocketinstruction" gebracht und unter der variable currentRocket gespeichert
             let currentRocketButton = document.createElement("button");
             rocketButtonDiv.appendChild(currentRocketButton);
-            currentRocketButton.innerText = currentRocketName;
+            currentRocketButton.innerText = currentRocket.name;
             // currentRocketButton.addEventListener("click", clickedRocketButton)
-            switch (currentRocketShape) {
-                case "star":
-                    // canvas.removeEventListener("click", StarRocket, false); 
-                    currentRocketButton.addEventListener("click", clickStarShape);
-                    function clickStarShape(_event) {
-                        canvas.addEventListener("click", StarRocket);
-                        function StarRocket(_event) {
-                            console.log("this is a star");
-                            console.log("Create firework");
-                            let mouseX = _event.offsetX;
-                            let mouseY = _event.offsetY;
-                            let particleAmount = 15;
-                            let offset = (Math.PI * 2) / particleAmount;
-                            for (let i = 0; i < particleAmount; i++) {
-                                let firework = new Fireworks.StarParticle(currentRocketSize, currentRocketColor, mouseX, mouseY, offset, i);
-                                fireworks.push(firework);
-                                console.log(fireworks);
-                            }
-                        }
-                    }
-                    break;
-                case "heart":
-                    currentRocketButton.addEventListener("click", HeartRocket);
-                    function HeartRocket(_event) {
-                        console.log("this is a  heart");
-                        console.log("Create firework");
-                        // let mouseX: number = _event.offsetX;
-                        // let mouseY: number = _event.offsetY;
-                        let particleAmount = 15;
-                        let offset = (Math.PI * 2) / particleAmount;
-                        for (let i = 0; i < particleAmount; i++) {
-                            let firework = new Fireworks.HeartParticle(currentRocketSize, currentRocketColor, 200, 200, offset, i);
-                            fireworks.push(firework);
-                            console.log(fireworks);
-                        }
-                    }
-                    break;
-                case "circle":
-                    currentRocketButton.addEventListener("click", CircleRocket);
-                    function CircleRocket(_event) {
-                        console.log("this is a  circle");
-                        console.log("Create firework");
-                        // let mouseX: number = _event.offsetX;
-                        // let mouseY: number = _event.offsetY;
-                        let particleAmount = 15;
-                        let offset = (Math.PI * 2) / particleAmount;
-                        for (let i = 0; i < particleAmount; i++) {
-                            let firework = new Fireworks.CircleParticle(currentRocketSize, currentRocketColor, 200, 200, offset, i);
-                            fireworks.push(firework);
-                            console.log(fireworks);
-                        }
-                    }
-                    break;
-                default:
-                    break;
-            }
+            currentRocketButton.addEventListener("click", () => {
+                activeRocket = currentRocket;
+            });
         }
     }
-    function clickedRocketButton() {
-        console.log(" you clicked a button");
-    }
     //Funktionen für Canvas:
-    function createFirework(_event) {
+    function startFirework(_event) {
         console.log("Create firework");
         let mouseX = _event.offsetX;
         let mouseY = _event.offsetY;
         let particleAmount = 15;
         let offset = (Math.PI * 2) / particleAmount;
         for (let i = 0; i < particleAmount; i++) {
-            let firework = new Fireworks.HeartParticle(2, "blue", mouseX, mouseY, offset, i);
-            fireworks.push(firework);
-            console.log(fireworks);
+            if (activeRocket == null) { // nur wenn der globalen variable active rocket vorher eine current rocket durch einen buttonclick zugeschrieben wurde, wird die schleife weiter ausgeführt, sonst return(es wird aus der schleife gesprungen)
+                return;
+            }
+            let firework = null;
+            switch (activeRocket.shape) {
+                case "star":
+                    firework = new Fireworks.StarParticle(activeRocket.size, activeRocket.color, mouseX, mouseY, offset, i);
+                    break;
+                case "heart":
+                    firework = new Fireworks.HeartParticle(activeRocket.size, activeRocket.color, mouseX, mouseY, offset, i);
+                    break;
+                case "circle":
+                    firework = new Fireworks.CircleParticle(activeRocket.size, activeRocket.color, mouseX, mouseY, offset, i);
+                    break;
+                default:
+                    break;
+            }
+            if (firework != null) { // wenn activeRocket eine Rakete war (nicht null), und somit firework auch nicht null ist (sondern darin particles erstellt wurden), dann werden diese in das globale array fireworks gepusht
+                fireworks.push(firework);
+                // console.log(fireworks); 
+            }
         }
     }
     function update() {
         console.log("Update");
-        Fireworks.crc2.fillStyle = "rgba(0, 0, 0, 0.09)";
+        if (fireworks.length == 0) {
+            Fireworks.crc2.fillStyle = "rgba(3, 56, 89, 0.1)";
+        }
+        else
+            Fireworks.crc2.fillStyle = "rgba(0, 0, 0, 0.1)";
         Fireworks.crc2.fillRect(0, 0, Fireworks.crc2.canvas.width, Fireworks.crc2.canvas.height);
         for (let firework of fireworks) {
             firework.move(1 / 50);

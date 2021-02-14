@@ -13,7 +13,7 @@ var Fireworks;
             Fireworks.crc2.beginPath();
             Fireworks.crc2.moveTo(4.4, 0);
             Fireworks.crc2.lineTo(8.6, 4.4);
-            Fireworks.crc2.lineTo(2.6, 5); // 4.8?
+            Fireworks.crc2.lineTo(2.6, 5);
             Fireworks.crc2.lineTo(0, 10.4);
             Fireworks.crc2.lineTo(-2.6, 5);
             Fireworks.crc2.lineTo(-8.6, 4.4);

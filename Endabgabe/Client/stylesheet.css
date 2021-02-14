@@ -4,8 +4,8 @@ body {
         grid-template-rows: max-content;
         margin-left: 2em;
         margin-right: 2em;
-        background-color:  #fff4d2;
-        font-family: 'Courier New', Courier, monospace;
+        background-color: #022840;
+        font-family: Roboto  ;
         border-width: 0.7em;
 
 }
@@ -13,17 +13,122 @@ header {
     text-align: center;
     grid-column: span 2;
     margin: 0.5em;
+    margin-bottom: -0.5em;
+    margin-top: 1em;;
 
 }
 h1{
-    padding-top: 0.5em;
+    margin-top: 1.7em;
+    margin-bottom: 0.3em;
+    font-size: 35px;
+    font-family: Roboto Slab;
+}
+
+h2{
+    font-size: larger;
+    font-weight: normal;
+    font-family: Roboto Slab;
+}
+p {
+    margin: 0.2em;
+    margin-top: -0.5em;
+    font-family: Roboto Slab;
+}
+div#headline {
+   margin:0em;
+   margin-left: 10em;
 }
 div {
-	margin: 0.5em;
+    width: auto;
+    height: auto;
+	margin: 0.7em;
 	padding: 0.5em;
+    color: #F2BE7E;
+}
+fieldset{
+    font-family: Roboto Slab;
+    border-color: #D96236;
+    border-radius: 0.3em;
+    border-width: 0.15em;
+    border-style: solid;    
+    font-weight: lighter;
+    margin-bottom: 0.7em;
+    color: #D96236;
 }
 
 button {
-    padding: 0.4em;
-    margin: 0.6em;
+    padding: 0.7em;
+    margin: 0.4em;
+    background-color: #F2D64B;
+    border-radius: 0.3em;
+    border: none;
+    color: #033859;
+    text-align: center;
+    font-weight: bold;
+    font-size: small;
+    font-family: Roboto;
+/* 
+    display: block; */
+
+}
+button#help{
+   float: right;
+   background-color: #F2D64B;
+   color:#022840;
+   font-family: Roboto Slab;
+   font-weight: bold;
+
+
+}
+
+div#RocketFormDiv button{
+    background-color: #D96236;
+    margin-left: 0.5em;
+    margin-top: 1em;
+}
+
+/* div#RocketFormDiv{
+    border-radius: 0.3em;
+    border-color: #D96236;
+    border-width: medium;
+    background-color: #033859;
+} */
+div#RocketButtons{
+    width: 1000px;
+}
+
+div#helpDiv{
+    margin-top: -1em;
+    margin-bottom:-5em;
+    margin-left: -1em;   
+}
+
+div#Nightsky{
+  float: right;
+}
+input{
+    padding: 0.5em;
+    border: none;
+    border-radius: 0.3em;
+    background-color: #033859;
+    color: #F2BE7E;
+    font-family: Roboto;
+}
+label{
+    font-size: smaller;
+    font-family: Roboto;
+    color: #F2BE7E;
+}
+
+
+span#smallbig{
+    font-size:smaller;
+    font-family: Roboto;
+    color: #F2BE7E;
+}
+canvas{
+    border-style: solid;
+    border-color: #D96236;
+    border-radius: 0.3em;
+    background: #033859;
 }
