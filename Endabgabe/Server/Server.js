@@ -48,6 +48,7 @@ var Fireworks;
                 _response.write("This is your rocket: ");
                 let jsonString = JSON.stringify(url.query);
                 _response.write(jsonString);
+                _response.write("PLEASE RELOAD THE PAGE :)");
                 console.log("save rocket");
                 storeRocketInstruction(url.query);
             }

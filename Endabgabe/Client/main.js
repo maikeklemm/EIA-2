@@ -32,7 +32,7 @@ var Fireworks;
         let query = new URLSearchParams(formData);
         let response = await fetch(url + "?" + query.toString());
         let responseText = await response.text();
-        alert(responseText + " PLEASE RELOAD THE PAGE");
+        alert(responseText);
         // console.log (formData);
         for (let entry of formData) {
             console.log(entry);
